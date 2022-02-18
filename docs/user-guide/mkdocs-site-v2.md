@@ -195,5 +195,7 @@ Change `Quick Start` to `Get Started`.
 
 Test the site on GitHub.
 
+No joy.
 
+Fix the site url in `mkdoc.yml`
 

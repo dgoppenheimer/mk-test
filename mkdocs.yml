@@ -1,4 +1,5 @@
 site_name: Molecular Dynamics
+site_url: https://dgoppenheimer.github.io/mk-test/
 theme:
   name: material
   custom_dir: docs/overrides/
