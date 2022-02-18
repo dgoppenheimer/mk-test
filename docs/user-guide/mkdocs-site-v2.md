@@ -197,5 +197,73 @@ Test the site on GitHub.
 
 No joy.
 
-Fix the site url in `mkdoc.yml`
+Add `site_url: https://dgoppenheimer.github.io/mk-test/` to `mkdocs.yml`.
+
+!!! success
+
+### Change Colors on the Landing Page
+
+The lower purple is okay, but I want to see how it looks with a lighter blue on top.
+
+Add this to `mkdocs.yml`:
+
+```yaml
+  palette:
+    primary: blue
+```
+
+!!! info
+    So far, so good.
+
+### Adjust Header
+
+I want to remove the `For updates follow @squidfunk on Twitter` banner from the top of the Landing Page. This is declared in the `docs/overrides/main.html` file. Delete the following:
+
+```html
+{% block announce %}
+  <a href="https://twitter.com/squidfunk">
+    For updates follow <strong>@squidfunk</strong> on
+    <span class="twemoji twitter">
+      {% include ".icons/fontawesome/brands/twitter.svg" %}
+    </span>
+    <strong>Twitter</strong>
+  </a>
+{% endblock %}
+```
+
+The footer is missing from the front page, but that's okay--it's not really needed.
+
+### Change the favicon and logo
+
+See [Changing the logo and icons](https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/) for instructions.
+
+Add files to the appropriate directories and add this to `mkdocs.yml`:
+
+```yaml
+theme:
+  logo: assets/logo.svg
+  favicon: assets/images/favicon.png
+```
+
+
+
+
+
+
+
+
+!!! success
+
+    Worked like a charm.
+
+
+
+
+
+
+
+
+
+
+
 

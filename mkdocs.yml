@@ -3,6 +3,11 @@ site_url: https://dgoppenheimer.github.io/mk-test/
 theme:
   name: material
   custom_dir: docs/overrides/
+  palette:
+    primary: blue
+  logo: assets/logo.svg
+  favicon: assets/images/favicon.png
+
 
 site_author: David G Oppenheimer
 site_description: >-
