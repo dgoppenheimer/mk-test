@@ -1,8 +1,18 @@
-site_name: My Docs
+site_name: Molecular Dynamics
 theme:
   name: material
+  custom_dir: docs/overrides/
+
+site_author: David G Oppenheimer
+site_description: >-
+  Notes on carrying out and analyzing the results from molecular dynamics simulations
+
+# Copyright
+copyright: Copyright &copy; 2022 David G Oppenheimer
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+
+

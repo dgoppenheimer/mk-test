@@ -90,3 +90,110 @@ mkdir user-guide
 
 !!! success
 
+```bash
+touch .gitignore
+echo ".DS_Store" >> .gitignore
+echo ".gitignore" >> .gitignore
+```
+
+Change site name in `mkdocs.yml`
+
+## Customizing the Site
+
+### Add an `extra.css` file
+
+See [How do I specify custom primary color for mkdocs-material?](https://stackoverflow.com/questions/63017898/how-do-i-specify-custom-primary-color-for-mkdocs-material)  
+And [Changing the colors](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)  
+And [Customization](https://squidfunk.github.io/mkdocs-material/customization/)
+
+
+
+## Create a Landing Page
+
+[How to add a landing page to a mkdocs doc site using mkdocs-material?](https://stackoverflow.com/questions/63438788/how-to-add-a-landing-page-to-a-mkdocs-doc-site-using-mkdocs-material)
+
+Create an `overrides` directory
+
+Reference this in `mkdocs.yml`
+
+```yaml
+ theme:
+   custom_dir: overrides
+```
+
+Since the custom directory is declared, you need to change 
+
+```py
+{% extends "overrides/main.html" %}
+```
+
+to
+
+```py
+{% extends "main.html" %}
+```
+
+in `main-styles.html` and `main.html`
+
+okay, I got most of the home page stuff shown on [Binbash Leverage™ Documentation](https://leverage.binbash.com.ar/)
+
+Now I need to customize it.
+
+Start with the footer.
+
+Compare it to the Material footer.
+
+Try and replace the bin bash items with the material items.
+
+need `overrides/assets/stylesheets` directory
+ add the css files
+
+The image is a bit too far to the right
+search the css file in the overrides directory 
+ change .mdx-hero__image{order:1;transform:translateX(1rem);
+
+ from 4rem to 1rem to move the image to the left a bit
+
+In the `home.html` file there is reference to `config.site_description` that has some text in it. The precedes the text: `Set up in 5 minutes`. It is not clear why the `Set up in 5 minutes` text was not added to `config.site_description`, or why the text in `config.site_description` was not added to `home.html`. Now there are two files to change for the same block of text. 
+
+The `config.site_description` refers to the `mkdocs.yml` file:
+
+```yaml
+site_description: >-
+  Create a branded static site from a set of Markdown files to host the
+  documentation of your Open Source or commercial project
+```
+
+Add some more stuff to the `mkdocs.yml` file:
+
+```yaml
+site_author: David G Oppenheimer
+site_description: >-
+  Notes on carrying out and analyzing the results from molecular dynamics simulations
+
+# Copyright
+copyright: Copyright &copy; 2022 David G Oppenheimer
+```
+
+### Remove the `Get Insiders` Button
+
+Delete the following from `home.html`:
+
+```html
+    <a href="{{ 'insiders/' | url }}" title="Material for MkDocs Insiders" class="md-button">
+      Get Insiders
+    </a>
+```
+
+### Change Text on the Landing Page
+
+In `home.html`, make the following changes:
+
+Remove the `Set up in 5 minutes.` text.  
+Change `Technical documentation that just works` to `Molecular dynamics simulations for fun and profit`  
+Change `Quick Start` to `Get Started`.
+
+Test the site on GitHub.
+
+
+
