@@ -1,4 +1,9 @@
-
+---
+title: Building This Site
+tags:
+  - mkdocs
+  - material
+---
 
 ```bash
 pip install mkdocs-material
@@ -246,15 +251,67 @@ theme:
 ```
 
 
-
-
-
-
-
-
 !!! success
 
     Worked like a charm.
+
+## Navigation
+
+See [Setting up navigation](https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/) in the Material theme documentation for excellent instructions.
+
+### Anchor Tracking
+
+Add the following to the `mkdocs.yml`:
+
+```yaml
+theme:
+  features:
+    - navigation.tracking
+```
+
+### Navigation Tabs
+
+Add the following to the `mkdocs.yml`:
+
+```yaml
+theme:
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+```
+
+### Back to Top Button
+
+Add the following to the `mkdocs.yml`:
+
+```yaml
+theme:
+  features:
+    - navigation.top
+```
+
+Okay, all these features so far are working perfectly. The rest is pretty straightforward--just add and organize content.
+
+### Tags
+
+I'm not sure that the tags feature will be useful on this site. I say this because the search feature provided by MkDocs and the Material theme appears to be excellent.
+
+Add the following to the `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - meta
+plugins:
+  - tags
+```
+
+### Footnotes
+
+```yaml
+markdown_extensions:
+  - footnotes
+```
+
 
 
 

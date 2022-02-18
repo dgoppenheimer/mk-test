@@ -7,7 +7,11 @@ theme:
     primary: blue
   logo: assets/logo.svg
   favicon: assets/images/favicon.png
-
+  features:
+    - navigation.top
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
 
 site_author: David G Oppenheimer
 site_description: >-
@@ -20,5 +24,11 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - meta
+  - footnotes
+
+plugins:
+  - tags
+
 
 
