@@ -29,7 +29,7 @@ markdown_extensions:
 
 plugins:
   - tags:
-      tags_file: aux/tags.md
+      tags_file: tags.md
 
 
 
