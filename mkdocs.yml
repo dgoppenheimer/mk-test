@@ -15,7 +15,7 @@ theme:
 
 site_author: David G Oppenheimer
 site_description: >-
-  Notes on carrying out and analyzing the results from molecular dynamics simulations
+  Notes for running and analyzing molecular dynamics simulations
 
 # Copyright
 copyright: Copyright &copy; 2022 David G Oppenheimer
@@ -27,6 +27,9 @@ markdown_extensions:
   - meta
   - footnotes
 
+plugins:
+  - tags:
+      tags_file: aux/tags.md
 
 
 
