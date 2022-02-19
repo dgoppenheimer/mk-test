@@ -12,6 +12,8 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
+
 
 site_author: David G Oppenheimer
 site_description: >-
@@ -27,9 +29,22 @@ markdown_extensions:
   - meta
   - footnotes
 
+nav:
+  - Home:
+    - index.md
+  - Reference:
+    - reference/index.md
+#    - Tags: reference/tags.md
+  - User Guide:
+    - user-guide/getting-started.md
+    - user-guide/introduction.md
+    - user-guide/building-this-site.md
+
+
+
 plugins:
   - tags:
-      tags_file: tags.md
+#      tags_file: reference/tags.md
 
 
 
