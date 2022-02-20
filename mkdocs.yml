@@ -12,7 +12,7 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes
+    - search.highlight
 
 
 site_author: David G Oppenheimer
@@ -28,24 +28,32 @@ markdown_extensions:
   - pymdownx.superfences
   - meta
   - footnotes
+  - tables
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - Home:
-    - index.md
-  - Reference:
-    - reference/index.md
-#    - Tags: reference/tags.md
+  - Home: ./index.md
   - User Guide:
-    - user-guide/getting-started.md
-    - user-guide/introduction.md
-    - user-guide/building-this-site.md
-
-
+    - Introduction: user-guide/introduction.md
+    - Getting Started: user-guide/getting-started.md
+    - Building This Site: user-guide/building-this-site.md
+  - Course:
+    - Lab 00: course/lab00.md
+    - Lab 01: course/lab01.md
 
 plugins:
-  - tags:
-#      tags_file: reference/tags.md
-
-
-
+    - mkdocs-video
 

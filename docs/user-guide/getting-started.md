@@ -1,8 +1,5 @@
 ---
 title: Getting Started
-tags:
-  - mkdocs
-  - project
 ---
 
 # Getting Started

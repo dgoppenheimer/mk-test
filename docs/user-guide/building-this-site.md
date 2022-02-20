@@ -1,8 +1,5 @@
 ---
 title: Building This Site
-tags:
-  - mkdocs
-  - material
 ---
 
 ```bash
@@ -313,6 +310,22 @@ markdown_extensions:
 ```
 
 
+### MathJax
+
+```js
+$$
+\operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
+$$
+```
+
+
+$$
+\operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
+$$
+
+
+Plugin for Video
+[mkdocs-video plugin](https://github.com/soulless-viewer/mkdocs-video)
 
 
 
