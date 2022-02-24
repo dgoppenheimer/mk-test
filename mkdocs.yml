@@ -12,6 +12,7 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes
     - search.highlight
 
 
@@ -23,6 +24,9 @@ site_description: >-
 copyright: Copyright &copy; 2022 David G Oppenheimer
 
 markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
   - admonition
   - pymdownx.details
   - pymdownx.superfences
@@ -38,6 +42,10 @@ markdown_extensions:
   - md_in_html
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -50,10 +58,24 @@ nav:
     - Introduction: user-guide/introduction.md
     - Getting Started: user-guide/getting-started.md
     - Building This Site: user-guide/building-this-site.md
-  - Course:
+    - user-guide/using-plotly.md
+    - MD Analysis:
+      - MD Analysis with VMD: user-guide/md-analysis/analysis-vmd.md
+  - Reference: 
+    - reference/ligplot.md
+    - reference/ligpargen.md
+    - reference/gromacs-tutorials.md
+    - reference/docking-tutorials.md
+    - reference/using-vmd.md
+    - reference/conda-colab.md
+
+  - Course: 
+    - course/index.md
+    - Course Organization: course/course-organization.md
     - Lab 00: course/lab00.md
     - Lab 01: course/lab01.md
 
 plugins:
     - mkdocs-video
+
 

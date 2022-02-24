@@ -74,6 +74,10 @@ Wait until the notebook connects with Google's computers
 g-create
 [<img src="https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true" alt="create account" width="560"/>](https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true)
 
+#### g-create using extension to control size
+
+![test](https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true){: style="height:150px;width:150px""}
+
 mount-drive
 [<img src="https://github.com/dgoppenheimer/notebook-images/blob/main/mount-drive.png?raw=true" alt="mount Google Drive" width="560"/>](https://github.com/dgoppenheimer/notebook-images/blob/main/mount-drive.png?raw=true)
 

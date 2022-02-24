@@ -247,10 +247,26 @@ theme:
   favicon: assets/images/favicon.png
 ```
 
-
 !!! success
 
     Worked like a charm.
+
+## Changing Page Title
+
+The `nav` part of `mkdocs.yml` takes precedence when setting the page title. But I want a longer title on the page and a shorter one for the navigation links. I found this solution in the [mkdocs issues](https://github.com/mkdocs/mkdocs/issues/1795). Put this code in your `/overrides/main.html` file.
+
+```jinja
+{% extends "base.html" %}
+{% if page.toc|first is defined %}
+{% set _title = page.toc.items[0].title %}
+{% else %}
+{% set _title = page.title|striptags %}
+{% endif %}
+
+{% block htmltitle %}
+<title>{{ _title }}</title>
+{% endblock %}
+```
 
 ## Navigation
 
@@ -323,17 +339,169 @@ $$
 \operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
 $$
 
+## Plugin for Video
 
-Plugin for Video
 [mkdocs-video plugin](https://github.com/soulless-viewer/mkdocs-video)
 
+Images used for Jupyter need an odd syntax, but local images can be standard Markdown. Also can use html in markdown.
+
+### Usage
+
+```markdown
+![type:video](https://www.youtube.com/embed/LXb3EKWsInQ)
+```
+
+## Image Captions
+
+[markdown_captions](https://github.com/Evidlo/markdown_captions)
+
+Install using `pip`.
+
+```bash
+pip install markdown-captions
+```
+
+Use the extension as follows.
+
+Also using the Markdown extension, `attr_list`.
+
+```markdown
+![image caption](https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true){: style="height:150px;width:150px""}
+```
+
+Add the following to `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - markdown_captions
+```
+
+![image caption](https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true){: style="height:150px;width:150px"}
+
+Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp? Serp er zerpus merp berps terpus derperker cerp ler derp? Sherlamer derpler re, sherp derpus. Mer ner serp derpus cerp derpler ler perper. Herderder derp derpsum mer!
+
+You can see that `markdown_captions` cannot use the `attr_list` without making a mess of the resulting figure and caption.
+
+From the [Images section](https://squidfunk.github.io/mkdocs-material/reference/images/#image-alignment) of the Material documentation:
+
+```html
+<figure markdown>
+  ![Image title](https://dummyimage.com/600x400/){ width="300" align="right"}
+  <figcaption>Image caption</figcaption>
+</figure>
+```
+
+<figure markdown>
+  ![Image caption](https://dummyimage.com/600x400/){ width="300", align="right"}
+  <figcaption>Image caption</figcaption>
+</figure>
+
+With no width attribute:
+
+<figure markdown>
+  ![Image caption](https://dummyimage.com/600x400/)
+  <figcaption>Image caption</figcaption>
+</figure>
+
+Below, image caption and left alignment was specified.
+
+```html
+<figure markdown>
+  ![alt](https://dummyimage.com/250x250/){ align="left" }
+  <figcaption>Image caption</figcaption>
+</figure>
+```
+
+<figure markdown>
+  ![alt](https://dummyimage.com/250x250/){ align="left" }
+  <figcaption>Image caption</figcaption>
+</figure>
+
+Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?
+
+But the alignment does not work.
+
+It looks like the alignment will work only within `markdown`, but not within `html`.
+
+```markdown
+![Image title](https://dummyimage.com/200x200/eee/aaa){ align="left" }
+```
+
+Renders to:
+
+![Image title](https://dummyimage.com/200x200/eee/aaa){ align="left" }
+
+Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?
+
+But you don't get a caption.
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 
+![Image title](https://dummyimage.com/400x400/eee/aaa){ align="left" }
 
+Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?
 
+<br/>
+<br/>
+<br/>
+<br/>
 
+For Google Colab images, using `markdown` in `html` allows both resizing the image and specifying its alignment. But you still don't get a caption.
 
+```html
+[<img src="https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true" alt="connect to a runtime" width="250" align="right"/>](https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true)
+```
 
+[<img src="https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true" alt="connect to a runtime" width="250" align="right"/>](https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true)
 
+One last attempt.
 
+```html
+<figure markdown>
+  ![<img src="https://dummyimage.com/600x400/" alt="dummy image" width="250" align="right"/>](https://dummyimage.com/600x400/)
+  <figcaption>Caption: this image should be small and on the right</figcaption>
+</figure>
+```
+
+<figure markdown>
+  [<img src="https://dummyimage.com/600x400/" alt="dummy image" width="250" align="right"/>](https://dummyimage.com/600x400/)
+  <figcaption>Caption: this image should be small and on the right</figcaption>
+</figure>
+
+<figure markdown>
+  [<img src="https://dummyimage.com/600x400/" alt="dummy image" width="250"/>](https://dummyimage.com/600x400/)
+  <figcaption>Caption: this image should be small in the center</figcaption>
+</figure>
+
+#### a locally served image
+
+```mk
+![an image](../assets/images/using-plotly/fig1.png){ width="300" }
+```
+
+Renders to 
+
+![an image](../assets/images/using-plotly/fig1.png){ width="300" }
+
+```html
+<figure markdown>
+  ![alt](../assets/images/using-plotly/fig1.png){ width="300" }
+  <figcaption>Image caption</figcaption>
+</figure>
+```
+
+Renders to 
+
+<figure markdown>
+  ![alt](../assets/images/using-plotly/fig1.png){ width="300" }
+  <figcaption>Image caption</figcaption>
+</figure>
+
+!!! note
+
+    Okay, this is not perfect, but works well enough. I can get images and resize them for the Jupyter notebooks, and I can serve local images for testing purposes. I can get captions and alignment some of the time.
 
