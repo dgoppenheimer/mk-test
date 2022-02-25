@@ -100,6 +100,45 @@ echo ".gitignore" >> .gitignore
 
 Change site name in `mkdocs.yml`
 
+!!! failure
+
+    The deployment of the site to the `gh-pages` branch using gh-actions stopped working after a while. I had never pulled that branch to my local repository, and the build on GitHub pages completed, but showed the following warning. 
+    ```bash
+    WARNING  -  Version check skipped: No version specified in previous deployment.
+    ```
+    After trying to get it working (and failing) I decided to switch to manual deployment using `mkdocs gh-deploy --force`.
+ 
+
+### Manual Deployment of Site
+
+- Remove the `ci.yml` file from `.github/workflows/` directory.
+- Delete the `gh-pages` branch on GitHub.
+
+```bash
+git push origin --delete gh-pages
+```
+
+- Create a new `gh-pages` branch.
+
+```bash
+git checkout gh-pages
+git push -u origin gh-pages
+git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+- Deploy the site.
+
+```bash
+mkdocs gh-deploy --force
+```
+
+- Add the `site/` directory to `.gitignore`.
+- Check the site at [https://dgoppenheimer.github.io/mk-test/](https://dgoppenheimer.github.io/mk-test/).
+
+!!! success
+
 ## Customizing the Site
 
 ### Add an `extra.css` file
