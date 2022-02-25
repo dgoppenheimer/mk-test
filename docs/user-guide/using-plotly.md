@@ -339,9 +339,320 @@ To make it easier to assign colors to plots, I included a cell that contains cod
     #    - `matplotlib.patches.Rectangle`
     ```
 
+### Making Plots
+
+Okay, let's plot some data. I uploaded `.dat` files from the RMSD analysis in VMD for three different domains of the Adk protein. We can look at the RMSD of each domain separately.
+
+First I'll try to reproduce the plot made by VMD.
+
+```py
+import plotly.graph_objects as go
+import pandas as pd
+import plotly.express as px
+
+df = pd.read_csv('/content/rmsd-core.dat', sep='\s\s+', engine='python')
+
+fig = px.line(df, x="frame", y="mol0", title='RMSD of CORE',
+labels=dict(frame="simulation frame", mol0="RMSD vs t=0")
+)
+fig.update_layout(width=600)
+fig.show()
+```
+
+![plot of RMSD of core domain](../assets/images/using-plotly/rmsd-core.png){ width="500" }
+
+!!! success
+
+Now let's try the LID domain. I already uploaded the `rmsd-lid.dat` file. We'll start by looking at the data table.
+
+```py
+import plotly.graph_objects as go
+import pandas as pd
+
+import plotly.express as px
+
+df = pd.read_csv('/content/rmsd-lid.dat',
+           sep='\s\s+', engine='python')
+           
+df.columns
+```
+
+The output is: `Index(['frame', 'mol0'], dtype='object')`, and we see that the columns are labeled `frame` and `mol0` like before.
+
+=== "Table"
+
+    ![table of RMSD of lid domain](../assets/images/using-plotly/rmsd-lid-table.png){ width="400" }
+
+=== "Code"
+
+    ```py
+    import plotly.graph_objects as go
+    import pandas as pd
+    import plotly.express as px
+
+    df = pd.read_csv('/content/rmsd-lid.dat',
+            sep='\s\s+', engine='python')
+
+    fig = go.Figure(data=[go.Table(
+        header=dict(values=list(df.columns),
+                    fill_color='paleturquoise',
+                    align='center'),
+        cells=dict(values=[df.frame, df.mol0],
+                    fill_color='lavender',
+                    align='left'))
+    ])
+    fig.update_layout(width=500)
+    fig.show()
+    ```
+
+!!! success
+
+Let's make a plot.
+
+=== "Plot"
+
+    ![plot of RMSD of lid domain](../assets/images/using-plotly/rmsd-lid.png){ width="500" }
+
+=== "Code"
+
+    ```py
+    df = pd.read_csv('/content/rmsd-lid.dat', sep='\s\s+', engine='python')
+
+    fig = px.line(df, x="frame", y="mol0", title='RMSD of LID Domain',
+    labels=dict(frame="simulation frame", mol0="RMSD vs t=0")
+    )
+    fig.update_layout(width=600)
+    fig.show()
+    ```
+
+!!! success
+
+It would be useful to see all traces on the same figure. Let's give it a whirl.
+
+In this method, each `.dat` file is read into a separate dataframe, and individual figures are produced. Each figure can be styled independently. Then all the figures are combined into one composite figure.
+
+=== "Figure legend top"
+
+    ![plot of RMSD of all domains](../assets/images/using-plotly/rmsd-all-l-top.png){ width="500" }
+
+=== "Code legend top"
+
+    ```py
+    import plotly.express as px
+    import plotly.graph_objects as go
+    import pandas as pd
+
+    # Create dataframes for each file
+    df = pd.read_csv('/content/rmsd-core.dat', sep='\s\s+', engine='python')
+    df2 = pd.read_csv('/content/rmsd-lid.dat', sep='\s\s+', engine='python')
+    df3 = pd.read_csv('/content/rmsd-nmp.dat', sep='\s\s+', engine='python')
+
+    # create figure 1
+    fig1 = px.line(df, x="frame", y="mol0") # x and y are the column names
+    # change the color of the trace and add a name for the legend
+    fig1.update_traces(line=dict(color = 'violet'), 
+                    name="RMSD-core")
+
+    # create figure 2
+    fig2 = px.line(df2, x="frame", y="mol0")
+    # change the color of the trace and add a name for the legend
+    fig2.update_traces(line=dict(color = 'deepskyblue'), 
+                    name="RMSD-lid")
+
+    # create figure 3
+    fig3 = px.line(df3, x="frame", y="mol0")
+    # change the color of the trace and add a name for the legend
+    fig3.update_traces(line=dict(color = 'goldenrod'), 
+                    name="RMSD-nmp")
+
+    # construct the composite figure
+    fig4 = go.Figure(data=fig1.data + fig2.data + fig3.data)
+
+    # add the legend and the axes titles
+    fig4.update_traces(showlegend=True)
+    fig4.update_xaxes(title_text="Simulation Frame")
+    fig4.update_yaxes(title_text="RMSD vs t=0")
+
+    # change the graph width and add a graph title
+    fig4.update_layout(width=600, title_text="RMSD for adk")
+
+    # to anchor the legend in the top left of the graph, this works:
+    # fig4.update_layout(width=600, title_text="RMSD for adk",
+    #                     legend=dict(
+    #     yanchor="top",
+    #     y=0.99,
+    #     xanchor="left",
+    #     x=0.01
+    # ))
+
+    # show the graph
+    fig4.show()
+    ```
+
+=== "Figure legend bottom"
+
+    ![plot of RMSD of all domains](../assets/images/using-plotly/rmsd-all-l-bottom.png){ width="500" }
+
+=== "Code legend bottom"
+
+    ```py
+    import plotly.express as px
+    import plotly.graph_objects as go
+    import pandas as pd
+
+    # Create dataframes for each file
+    df = pd.read_csv('/content/rmsd-core.dat', sep='\s\s+', engine='python')
+    df2 = pd.read_csv('/content/rmsd-lid.dat', sep='\s\s+', engine='python')
+    df3 = pd.read_csv('/content/rmsd-nmp.dat', sep='\s\s+', engine='python')
+
+    # create figure 1
+    fig1 = px.line(df, x="frame", y="mol0") # x and y are the column names
+    # change the color of the trace and add a name for the legend
+    fig1.update_traces(line=dict(color = 'violet'), 
+                    name="RMSD-core")
+
+    # create figure 2
+    fig2 = px.line(df2, x="frame", y="mol0")
+    # change the color of the trace and add a name for the legend
+    fig2.update_traces(line=dict(color = 'deepskyblue'), 
+                    name="RMSD-lid")
+
+    # create figure 3
+    fig3 = px.line(df3, x="frame", y="mol0")
+    # change the color of the trace and add a name for the legend
+    fig3.update_traces(line=dict(color = 'goldenrod'), 
+                    name="RMSD-nmp")
+
+    # construct the composite figure
+    fig4 = go.Figure(data=fig1.data + fig2.data + fig3.data)
+
+    # add the legend and the axes titles
+    fig4.update_traces(showlegend=True)
+    fig4.update_layout(
+        legend=dict(
+            # the x and y positions will put legend in bottom middle of the figure
+            x=0.4,
+            y=0,
+            title_text="Legend",
+            bgcolor="whitesmoke"
+            )
+            )
+    fig4.update_xaxes(title_text="Simulation Frame")
+    fig4.update_yaxes(title_text="RMSD vs t=0")
+    # change the graph width and add a graph title
+    fig4.update_layout(width=600, title_text="RMSD for adk")
+
+    # to anchor the legend in the top left of the graph, this works:
+    # fig4.update_layout(width=600, title_text="RMSD for adk",
+    #                     legend=dict(
+    #     yanchor="top",
+    #     y=0.99,
+    #     xanchor="left",
+    #     x=0.01
+    # ))
+
+    # show the graph
+    fig4.show()
+    ```
+    
 
 
 
-Okay, let's plot some data. I uploaded `.dat` files for three different domains of the Adk protein. We can look at the RMSD of each domain separately.
+
+I also found a way to put all the figures on the same plot without needing to make individual dataframes. However I could only make this work by converting the files to `.csv` format. Luckily, we can do that.
+
+=== "Figure"
+
+    ![plot of RMSD of all domains](../assets/images/using-plotly/rmsd-all-v2.png){ width="600" }
+
+=== "Code"
+
+    ```py
+    # import stuff
+    import plotly.graph_objects as go
+    import pandas as pd
+    import plotly.express as px
+
+    # read the .dat file
+    df = pd.read_csv('/content/rmsd-nmp.dat',
+            sep='\s\s+', engine='python')
+
+    # write a .csv file
+    df.to_csv('/content/rmsd-nmp.csv', index = False, sep = ",")
+
+    # do it again for the other .dat files
+    df = pd.read_csv('/content/rmsd-core.dat',
+            sep='\s\s+', engine='python')
+    df.to_csv('/content/rmsd-core.csv', index = False, sep = ",")
+
+    df = pd.read_csv('/content/rmsd-lid.dat',
+            sep='\s\s+', engine='python')
+    df.to_csv('/content/rmsd-lid.csv', index = False, sep = ",")
+
+
+    import plotly.express as px
+    import plotly.graph_objects as go
+    from pathlib import Path
+    import pandas as pd
+    import numpy as np
+
+    # This code iterates over a directory and makes the plot while combining
+    # the csv files. 
+
+    # location where files exist
+    p = Path.cwd().joinpath("/content/")
+
+    # read and concatinate all the .csv files into one dataframe, 
+    # creating an additional column that is the filename.
+    # plot the combined dataframe scatter (line), 
+    # using one plot / color per csv file.
+
+    fig5 = px.line(
+        pd.concat(
+            [pd.read_csv(f).assign(name=f.name) for f in p.glob("rmsd-*.csv")],
+        ),
+        color_discrete_map={
+                'rmsd-core.csv':'goldenrod', # a color for this filename
+                'rmsd-nmp.csv':'deepskyblue', # a color for this filename
+                'rmsd-lid.csv':'violet' # a color for this filename
+                },
+        x="frame", # the column to use as the X-axis
+        y="mol0", # the column to use as the Y-axis
+        color="name", # color each line based on filename
+        labels={
+                "frame": "Simulation Frame", # a title for the X-axis
+                "mol0": "RMSD vs t=0", # a title for the Y-axis
+                "name": "" # figure legend title (leave empty for no title)
+                }
+    )
+
+    # to anchor the legend in the top left of the graph, this works:
+
+    # fig5.update_layout(width=600, title_text="RMSD for adk",
+    #                     legend=dict(
+    #     yanchor="top",
+    #     y=0.99,
+    #     xanchor="left",
+    #     x=0.01
+    # ))
+
+    # Rename the traces
+    newnames = {'rmsd-core.csv':'RMSD CORE domain', 
+                'rmsd-nmp.csv':'RMSD NMP domain', 
+                'rmsd-lid.csv':'RMSD LID domain'}
+
+    fig5.for_each_trace(lambda t: t.update(name = newnames[t.name]))
+
+    # set the figure width and give the figure a title
+    fig5.update_layout(width=700, title_text="RMSD for adk")
+    # create an image of the plot
+    # fig5.write_image("rmsd-all-v2.png")
+    # show the figure
+    fig5.show()
+    ```
+
+
+
+
 
 
