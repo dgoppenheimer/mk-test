@@ -318,6 +318,8 @@ To make it easier to assign colors to plots, I included a cell that contains cod
 
     # to save a copy of this figure
     # plt.savefig('named-colors.png')
+
+    # plt.savefig must be before plt.show
     plt.show()
 
 
