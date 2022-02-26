@@ -1,18 +1,28 @@
 ---
 title: Using Plotly
 ---
-# Using Plotly
 
-Much of the analysis of MD simulations involves creating plots and graphs to summarize the data. The Python environment of Google Colab provides access to many of most popular plotting programs including `R`, `Matplotlib`, `Seaborn`, `Plotly`, and others. After reading about the pros and cons of the various packages I settled on [Plotly](https://plotly.com/). Plotly is powerful, offers 3D graphing and interactive plots, and has flexible styling for making publication-quality figures. And of course, it runs well in Jupyter notebooks.
+Much of the analysis of MD simulations involves creating plots and graphs to summarize the data. The Python environment of Google Colab provides access to many of most popular plotting programs including R, Matplotlib, Seaborn, Plotly, and others. After reading about the pros and cons of the various packages I settled on [Plotly](https://plotly.com/). Plotly is powerful, offers 3D graphing and interactive plots, and has flexible styling for making publication-quality figures. And of course, it runs well in Jupyter notebooks.
+
+## Learning Objectives
+
+At the end of this exercise, students will be able to do the following:
+
+1. Install Plotly in Colab.
+2. View a data table.
+3. Create an interactive plot of the data in a table.
+4. Add style to figures to enhance the visual hierarchy to easily distinguish the important elements from the peripheral.
+5. Combine multiple plots into a single figure.
+6. Locate additional resources on using Plotly in Colab.
 
 ## Resources
 
-[Plotly Tutorial for Beginners](https://www.kaggle.com/kanncaa1/plotly-tutorial-for-beginners): Nice examples for most of the types of plots one would use.  
-[Plotly Basics](https://learn.co/lessons/plotly-basics): This tutorial explains the code very well.  
-[Getting Started with Plotly in Python](https://plotly.com/python/getting-started/): Go to the source for getting Plotly up and running.  
-[Data Visualization with Plotly Express](https://www.coursera.org/projects/data-visualization-plotly-express)  
-[Getting Plotly working in Jupyter Lab and fastpages](https://colab.research.google.com/github/binnisb/blog/blob/master/_notebooks/2020-04-02-Plotly-in-lab.ipynb)  
-[Plotly Express in Python](https://plotly.com/python/plotly-express/)
+- [Plotly Tutorial for Beginners](https://www.kaggle.com/kanncaa1/plotly-tutorial-for-beginners): Nice examples for most of the types of plots one would use.  
+- [Plotly Basics](https://learn.co/lessons/plotly-basics): This tutorial explains the code very well.  
+- [Getting Started with Plotly in Python](https://plotly.com/python/getting-started/): Go to the source for getting Plotly up and running.  
+- [Data Visualization with Plotly Express](https://www.coursera.org/projects/data-visualization-plotly-express)  
+- [Getting Plotly working in Jupyter Lab and fastpages](https://colab.research.google.com/github/binnisb/blog/blob/master/_notebooks/2020-04-02-Plotly-in-lab.ipynb)  
+- [Plotly Express in Python](https://plotly.com/python/plotly-express/)
 
 ## Getting Started
 
@@ -31,7 +41,7 @@ plotly.__version__
 
 ### Saving Images of Plots
 
-I want to include a few images of the plots produced by Plotly. See [Static Image Export in Python](https://plotly.com/python/static-image-export/) for instructions.
+I want to include a few images of the plots produced by Plotly in this website even though it is not needed in Colab. See [Static Image Export in Python](https://plotly.com/python/static-image-export/) for instructions.
 
 ```py
 pip install -U kaleido
@@ -218,7 +228,7 @@ fig.write_image("rmsd-core.dat.png") # make a png of the figure
 
 #### Styling Plots
 
-To make it easier to assign colors to plots, I included a cell that contains code to produce swatches of named colors that will work in Colab. This code comes from the [List of named colors](https://matplotlib.org/stable/gallery/color/named_colors.html) page from the [Matplotlib documentation website](https://matplotlib.org/stable/index.html). I put this code into a form so I can keep it out of the way.
+To make it easier to assign colors to plots, I included a cell that contains code to produce swatches of named colors that will work in Colab. This code comes from the [List of named colors](https://matplotlib.org/stable/gallery/color/named_colors.html) page from the [Matplotlib documentation website](https://matplotlib.org/stable/index.html). On Colab, I put this code into a form so I can keep it out of the way.
 
 === "Color Figure"
 
@@ -571,7 +581,9 @@ I also found a way to put all the figures on the same plot without needing to ma
     # import stuff
     import plotly.graph_objects as go
     import pandas as pd
+    import numpy as np
     import plotly.express as px
+    from pathlib import Path
 
     # read the .dat file
     df = pd.read_csv('/content/rmsd-nmp.dat',
@@ -589,22 +601,15 @@ I also found a way to put all the figures on the same plot without needing to ma
             sep='\s\s+', engine='python')
     df.to_csv('/content/rmsd-lid.csv', index = False, sep = ",")
 
-
-    import plotly.express as px
-    import plotly.graph_objects as go
-    from pathlib import Path
-    import pandas as pd
-    import numpy as np
-
     # This code iterates over a directory and makes the plot while combining
     # the csv files. 
 
-    # location where files exist
+    # location where the .csv files exist
     p = Path.cwd().joinpath("/content/")
 
-    # read and concatinate all the .csv files into one dataframe, 
+    # Read and concatenate all the .csv files into one dataframe, 
     # creating an additional column that is the filename.
-    # plot the combined dataframe scatter (line), 
+    # Plot the combined dataframe scatter (line), 
     # using one plot / color per csv file.
 
     fig5 = px.line(
@@ -623,10 +628,10 @@ I also found a way to put all the figures on the same plot without needing to ma
                 "frame": "Simulation Frame", # a title for the X-axis
                 "mol0": "RMSD vs t=0", # a title for the Y-axis
                 "name": "" # figure legend title (leave empty for no title)
-                }
-    )
+                })
 
-    # to anchor the legend in the top left of the graph, this works:
+    # to anchor the legend in the top left of the graph, uncomment
+    # the code below.
 
     # fig5.update_layout(width=600, title_text="RMSD for adk",
     #                     legend=dict(
@@ -645,14 +650,9 @@ I also found a way to put all the figures on the same plot without needing to ma
 
     # set the figure width and give the figure a title
     fig5.update_layout(width=700, title_text="RMSD for adk")
-    # create an image of the plot
+    # To create an image of the plot, uncomment the code below.
     # fig5.write_image("rmsd-all-v2.png")
+
     # show the figure
     fig5.show()
     ```
-
-
-
-
-
-
