@@ -72,8 +72,8 @@ nav:
   - Course: 
     - course/index.md
     - Course Organization: course/course-organization.md
-    - Lab 00: course/lab00.md
-    - Lab 01: course/lab01.md
+    - Lab 00: course/lab00-preparation.md
+    - Lab 01: course/lab01-jupyter-colab.md
 
 plugins:
     - mkdocs-video
