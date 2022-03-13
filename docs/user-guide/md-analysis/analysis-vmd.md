@@ -98,20 +98,6 @@ mol showrep 0 0 off # turn off molecule 0 (top)
  using Extensions ‣ Analysis ‣ RMSD Trajectory Tool
 
 
-Statistics:
-
-R ggplot2
-
-Python
-
-Matplotlib (no)
-Pandas
-seaborn
-plotly express (support for time series, animations)
-altair (no)
-bokeh
-
-
 
 
 
@@ -132,7 +118,11 @@ bokeh
 
 !!! note
 
-    Load the `*.dcd` file first. You may be able to load all the frames depending on the size of the trajectory file and your computer's memory. If you load the `*.psf` or a `*.pdb` file first, and then load the trajectory, the viewer will try to display each frame as it is loaded, which will likely lead to memory problems and a crash.
+    Load the `*.dcd` file first. You may be able to load all the frames depending on the size of the trajectory file and your computer's memory. If you load the `*.psf` or a `*.pdb` file first, and then load the trajectory, the viewer will try to display each frame as it is loaded, which will likely lead to memory problems and a crash. However, the [PHY542: MD analysis with VMD tutorial](https://becksteinlab.physics.asu.edu/pages/courses/2017/PHY542/practicals/md/dynamics/visualization.html) states:
+    >You always load a topology file first and then you load the trajectory data for the system.
+
+    I need to check the VMD documentation to determine the correct order for loading the files into VMD.
+
 
 
 
@@ -352,3 +342,14 @@ There is already a built-in macro for lipid/lipids and for glycans. (So I don't 
 
 mol modselect 3 0 glycan 
 mol modcolor 3 0 ResType
+
+
+## Resources
+
+## CHEM 181 Introduction to Molecular Simulation
+
+[Introduction to Molecular Dynamics Trajectories](http://copresearch.pacific.edu/mmccallum/181/styled-5/styled-16/index.html): This is done in VMD. Look carefully at the section *Trajectory coloring by structure*. This has useful tips.
+
+
+
+
