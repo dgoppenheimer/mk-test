@@ -14,9 +14,15 @@ Check to see if conda is already installed:
 !conda --version
 ```
 
-You should get the error, `/bin/bash: conda: command not found`.
+You may get the error:
 
-Install conda:
+!!! failure "Error"
+
+    ```bash
+    /bin/bash: conda: command not found
+    ```
+
+To fix, install conda:
 
 ```py
 !pip install -q condacolab
@@ -24,7 +30,13 @@ import condacolab
 condacolab.install()
 ```
 
-Note that the kernel will reboot and you will see an error stating that *Your session crashed for an unknown reason.* It is okay to dismiss this notice.
+Note that the kernel will reboot and you will see this error message:
+
+!!! warning 
+
+    Your session crashed for an unknown reason.
+    
+It is okay to dismiss this notice.
 
 Confirm that installation was successful:
 
@@ -32,7 +44,7 @@ Confirm that installation was successful:
 !conda --version
 ```
 
-You should get `conda 4.9.2`. 
+You should get `conda 4.9.2`, or whatever the current version is.
 
 !!! success
 

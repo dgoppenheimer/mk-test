@@ -79,7 +79,9 @@ description: >
 
 ## Additional Resources
 
-See this course from the summer of 2021, [CHEM 181 Introduction to Molecular Simulation](http://copresearch.pacific.edu/mmccallum/181/index.html). 
+See this course from the summer of 2021, [CHEM 181 Introduction to Molecular Simulation](http://copresearch.pacific.edu/mmccallum/181/index.html).
+
+[CHEM 181 Syllabus](http://copresearch.pacific.edu/mmccallum/181/resources/New-Syllabus.pdf)
 
 The course is set up for 5 weeks.
 
@@ -110,5 +112,3 @@ See [Structure validation practical - answers](https://www.ebi.ac.uk/pdbe/modval
 ## Other Courses
 
 [Molecular Dynamics simulations in Python](https://klyshko.github.io/teaching/2019-03-01-teaching)
-
-## 

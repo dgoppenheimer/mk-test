@@ -139,6 +139,13 @@ mkdocs gh-deploy --force
 
 !!! success
 
+#### Update
+
+I thought I would try the automatic deployment one more time.
+
+- Move the `ci.yml` file back to `.github/workflows/` directory.
+
+
 ## Customizing the Site
 
 ### Add an `extra.css` file

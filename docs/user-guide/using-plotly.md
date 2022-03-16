@@ -661,7 +661,7 @@ I also found a way to put all the figures on the same plot without needing to ma
 Here is a Python tool to draw a [Ramachandran Plot](https://docs.eyesopen.com/toolkits/cookbook/python/plotting/rama.html). I especially like the tabs to see plots of specific amino acids.
 
 
-
+Here is a tip on [Exporting Jupyter notebooks with Plotly graphs](https://blog.matteoferla.com/2019/06/exporting-jupyter-notebooks-with-plotly.html?m=0)
 
 
 
