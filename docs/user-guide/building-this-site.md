@@ -82,7 +82,6 @@ markdown_extensions:
 
 !!! success
 
-
 Create a directory and a file
 
 ```
@@ -107,7 +106,6 @@ Change site name in `mkdocs.yml`
     WARNING  -  Version check skipped: No version specified in previous deployment.
     ```
     After trying to get it working (and failing) I decided to switch to manual deployment using `mkdocs gh-deploy --force`.
- 
 
 ### Manual Deployment of Site
 
@@ -551,3 +549,6 @@ Renders to
 
     Okay, this is not perfect, but works well enough. I can get images and resize them for the Jupyter notebooks, and I can serve local images for testing purposes. I can get captions and alignment some of the time.
 
+
+
+Just some text for testing
