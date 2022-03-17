@@ -57,6 +57,11 @@ nav:
     - Getting Started: user-guide/getting-started.md
     - Building This Site: user-guide/building-this-site.md
     - user-guide/using-plotly.md
+    - user-guide/md-analysis/analysis-amber.md
+    - user-guide/md-analysis/analysis-bio3d.md
+    - user-guide/md-analysis/analysis-gromacs.md
+    - user-guide/md-sims/mdsim-gromacs.md
+    - user-guide/md-sims/mdsim-mdanalysis.md
     - MD Analysis:
       - MD Analysis with VMD: user-guide/md-analysis/analysis-vmd.md
   - Reference: 
