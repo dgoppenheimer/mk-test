@@ -182,6 +182,7 @@ I thought I would try the automatic deployment one more time.
     markdown>=3.2
     mkdocs>=1.2.3
     mkdocs-video>=1.1.0
+    mkdocs-material>=8.0
     mkdocs-material-extensions>=1.0
     pygments>=2.10
     pymdown-extensions>=9.0
