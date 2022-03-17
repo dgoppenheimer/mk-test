@@ -143,6 +143,110 @@ I thought I would try the automatic deployment one more time.
 
 - Move the `ci.yml` file back to `.github/workflows/` directory.
 
+!!! failure
+
+    Still no joy.
+
+- Create a `requirements.txt` file with the following contents (see below).
+- Add the `requirements.txt` file to the root of your project directory and add it to version control.
+
+!!! note
+
+    I got the file contents below from the[ Mkdocs developer GitHub repository](https://github.com/squidfunk/mkdocs-material/blob/master/requirements.txt) and modified it for my needs.
+
+!!! example "requirements.txt"
+
+    ```txt
+    # Copyright (c) 2016-2022 Martin Donath <martin.donath@squidfunk.com>
+
+    # Permission is hereby granted, free of charge, to any person obtaining a copy
+    # of this software and associated documentation files (the "Software"), to
+    # deal in the Software without restriction, including without limitation the
+    # rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+    # sell copies of the Software, and to permit persons to whom the Software is
+    # furnished to do so, subject to the following conditions:
+
+    # The above copyright notice and this permission notice shall be included in
+    # all copies or substantial portions of the Software.
+
+    # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    # FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+    # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+    # IN THE SOFTWARE.
+
+    # Direct dependencies
+    jinja2>=2.11.1
+    markdown>=3.2
+    mkdocs>=1.2.3
+    mkdocs-video>=1.1.0
+    mkdocs-material-extensions>=1.0
+    pygments>=2.10
+    pymdown-extensions>=9.0
+
+    ```
+
+Create a `gh-pages.yml` file with the contents listed below and put it into the `.github/workflows/` directory.
+
+I got this `gh-pages.yml` file from [peaceiris' action-gh-pages GitHub repository](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-static-site-generators-with-python)
+
+Contents of the `gh-pages.yml` file:
+
+```yaml
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Upgrade pip
+        run: |
+          # install pip=>20.1 to use "pip cache dir"
+          python3 -m pip install --upgrade pip
+
+      - name: Get pip cache dir
+        id: pip-cache
+        run: echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: python3 -m pip install -r ./requirements.txt
+
+      - run: mkdocs build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+```
+
+
 
 ## Customizing the Site
 
