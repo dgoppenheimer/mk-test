@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes for running and analyzing molecular dynamics simulations">
+      
+      
+        <meta name="author" content="David G Oppenheimer">
+      
+      
+        <link rel="canonical" href="https://dgoppenheimer.github.io/mk-test/reference/using-vmd/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+    
+    
+      
+        <title>Using VMD - Molecular Dynamics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50e68009.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../overrides/assets/stylesheets/main.d9227bb8.min.css">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-vmd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Molecular Dynamics" class="md-header__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Molecular Dynamics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using VMD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user-guide/introduction/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ligplot/" class="md-tabs__link md-tabs__link--active">
+        Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course/" class="md-tabs__link">
+        Course
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Molecular Dynamics" class="md-nav__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Molecular Dynamics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/building-this-site/" class="md-nav__link">
+        Building This Site
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/using-plotly/" class="md-nav__link">
+        Using Plotly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-amber/" class="md-nav__link">
+        Analysis of MD Simulations Using AMBER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-bio3d/" class="md-nav__link">
+        Protein Structure Networks with Bio3D
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-gromacs/" class="md-nav__link">
+        analysis-gromacs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-sims/mdsim-gromacs/" class="md-nav__link">
+        Molecular Dynamics Simulations with GROMACS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-sims/mdsim-mdanalysis/" class="md-nav__link">
+        MD Simulations Using MDAnalysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          MD Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MD Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          MD Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-vmd/" class="md-nav__link">
+        MD Analysis with VMD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ligplot/" class="md-nav__link">
+        LigPlot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ligpargen/" class="md-nav__link">
+        LigParGen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs-tutorials/" class="md-nav__link">
+        GROMACS Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docking-tutorials/" class="md-nav__link">
+        Docking Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using VMD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Using VMD
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-text-commands" class="md-nav__link">
+    Common text commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color" class="md-nav__link">
+    Color
+  </a>
+  
+    <nav class="md-nav" aria-label="Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-selection-macro" class="md-nav__link">
+    Creating a Selection Macro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-atomselect-command" class="md-nav__link">
+    Using the atomselect Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-multiple-representations" class="md-nav__link">
+    Creating multiple representations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-lipids" class="md-nav__link">
+    Selecting Lipids
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-vmd" class="md-nav__link">
+    Setting up VMD
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up VMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-vmdrc-file" class="md-nav__link">
+    the .vmdrc file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-molecule" class="md-nav__link">
+    Top molecule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-background-color" class="md-nav__link">
+    Change Background Color
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color_1" class="md-nav__link">
+    Color
+  </a>
+  
+    <nav class="md-nav" aria-label="Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    Materials
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-a-selection" class="md-nav__link">
+    Modifying a Selection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmd-and-namd-tutorials" class="md-nav__link">
+    VMD and NAMD tutorials
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripting-in-vmd" class="md-nav__link">
+    Scripting in VMD
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripting in VMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-tutorial" class="md-nav__link">
+    Quick tutorial
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#movie-making" class="md-nav__link">
+    Movie making
+  </a>
+  
+    <nav class="md-nav" aria-label="Movie making">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-notes" class="md-nav__link">
+    Random Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-an-image" class="md-nav__link">
+    Saving an Image
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conda-colab/" class="md-nav__link">
+        Conda on Colab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../color-by-rmsd/" class="md-nav__link">
+        Coloring by RMSD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example-articles/" class="md-nav__link">
+        Example Journal Articles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../course/">Course</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Course" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/course-organization/" class="md-nav__link">
+        Course Organization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab00-preparation/" class="md-nav__link">
+        Lab 00
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab01-jupyter-colab/" class="md-nav__link">
+        Lab 01
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-text-commands" class="md-nav__link">
+    Common text commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color" class="md-nav__link">
+    Color
+  </a>
+  
+    <nav class="md-nav" aria-label="Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-selection-macro" class="md-nav__link">
+    Creating a Selection Macro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-atomselect-command" class="md-nav__link">
+    Using the atomselect Command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-multiple-representations" class="md-nav__link">
+    Creating multiple representations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-lipids" class="md-nav__link">
+    Selecting Lipids
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-vmd" class="md-nav__link">
+    Setting up VMD
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up VMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-vmdrc-file" class="md-nav__link">
+    the .vmdrc file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-molecule" class="md-nav__link">
+    Top molecule
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-background-color" class="md-nav__link">
+    Change Background Color
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#color_1" class="md-nav__link">
+    Color
+  </a>
+  
+    <nav class="md-nav" aria-label="Color">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#materials" class="md-nav__link">
+    Materials
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-a-selection" class="md-nav__link">
+    Modifying a Selection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmd-and-namd-tutorials" class="md-nav__link">
+    VMD and NAMD tutorials
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripting-in-vmd" class="md-nav__link">
+    Scripting in VMD
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripting in VMD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-tutorial" class="md-nav__link">
+    Quick tutorial
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#movie-making" class="md-nav__link">
+    Movie making
+  </a>
+  
+    <nav class="md-nav" aria-label="Movie making">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-notes" class="md-nav__link">
+    Random Notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saving-an-image" class="md-nav__link">
+    Saving an Image
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">  
+              
+                
+
+<h2></h2>
+<h1 id="using-vmd">Using VMD</h1>
+<p>Download the tutorial files from the <a href="http://www.ks.uiuc.edu/Training/Tutorials/vmd/">VMD tutorials website</a>.</p>
+<h2 id="common-text-commands">Common text commands</h2>
+<p>See the <a href="https://www.ks.uiuc.edu/Research/vmd/vmd_help.html#TextCommands">VMD Text Command Summary</a></p>
+<ul>
+<li><code>logfile console</code> to log GUI commands to the <code>tcl</code> console</li>
+<li><code>exit</code>: Quit VMD.</li>
+<li><code>mol</code>: Load, modify, or delete a molecule in VMD.</li>
+<li><code>logfile</code><em><code>filename</code></em>, to log the GUI commands to a file that can be run as a script.</li>
+<li><code>mol addrep 0</code> # adds a representation of molecule 0</li>
+<li><code>mol showrep 0 0 off</code> # turn off molecule 0 (top)</li>
+<li><code>logfile off</code>, to turn off logging.</li>
+<li><code>logfile console</code>, to log the commands to the console when you want to view a GUI command.</li>
+<li><code>display resetview</code>, to reset the view (duh).</li>
+<li><code>mol modstyle 0 1 VDW 1.000000 12.000000</code></li>
+<li><code>mol modstyle 0 1 VDW 0.500000 13.000000</code>, here 0.5 is the <em>sphere scale</em>, and 13 is the <em>sphere resolution</em>.</li>
+<li><code>mol modstyle 0 1 Tube 0.300000 12.000000</code>, here 0.3 is the tube <em>Radius</em> and 12 is the <em>resolution</em>.</li>
+<li><code>mol modstyle 0 1 NewCartoon 0.300000 10.000000 4.100000 0</code>, </li>
+<li><code>mol modcolor 0 1 ResType</code>, to change coloring to residue type (polar, charged, etc.)</li>
+<li><code>mol modselect 0 1 helix</code>, to select just the helices</li>
+<li><code>mol modselect 0 1 (not helix) and (not betasheet)</code>, to select just the loops</li>
+<li><code>mol modselect 0 1 (resname LYS) or (resname GLY)</code>,</li>
+<li><code>mol modselect 0 1 water</code>,</li>
+<li><code>mol modselect 0 1 water and within 3 of protein</code>, selects all the water molecules that are within a distance of 3 angstroms of the protein</li>
+<li><code>axes location off</code>, turn off the axes in the viewer. See <a href="https://www.ks.uiuc.edu/Research/vmd/current/ug/node123.html">axes</a> for options.</li>
+<li><code>mol modcolor rep_number molecule_number color_method</code></li>
+<li><code>mol modselect rep_number molecule_number select_method</code></li>
+<li><code>mol showrep molecule_number rep_number [on | off]</code></li>
+<li><code>modstyle rep_number molecule_number rep_style:</code></li>
+</ul>
+<h2 id="color">Color</h2>
+<p>From the <a href="https://www.ks.uiuc.edu/Research/vmd/vmd-1.7.1/ug/node72.html">VMD Coloring Methods</a> web page:</p>
+<blockquote>
+<p>There are 1041 colors available in VMD, with color ids ranging from 0 to 1040. The first 17 are, in order:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th align="center">Color ID</th>
+<th align="center">Favorite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blue</td>
+<td align="center">0</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>red</td>
+<td align="center">1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>gray</td>
+<td align="center">2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>orange</td>
+<td align="center">3</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>yellow</td>
+<td align="center">4</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>tan</td>
+<td align="center">5</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>silver</td>
+<td align="center">6</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>green</td>
+<td align="center">7</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>white</td>
+<td align="center">8</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>pink</td>
+<td align="center">9</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>cyan</td>
+<td align="center">10</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>purple</td>
+<td align="center">11</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>lime</td>
+<td align="center">12</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>mauve</td>
+<td align="center">13</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>ochre</td>
+<td align="center">14</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>iceblue</td>
+<td align="center">15</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>black</td>
+<td align="center">16</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>yellow2</td>
+<td align="center">17</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>yellow3</td>
+<td align="center">18</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>green2</td>
+<td align="center">19</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>green3</td>
+<td align="center">20</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>cyan2</td>
+<td align="center">21</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>cyan3</td>
+<td align="center">22</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>blue2</td>
+<td align="center">23</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>blue3</td>
+<td align="center">24</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>violet</td>
+<td align="center">25</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>26violet2</td>
+<td align="center">26</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>magenta</td>
+<td align="center">27</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>29magenta2</td>
+<td align="center">28</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>red2</td>
+<td align="center">29</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>red3</td>
+<td align="center">30</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>orange2</td>
+<td align="center">31</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+<tr>
+<td>orange 3</td>
+<td align="center">32</td>
+<td align="center"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="creating-a-selection-macro">Creating a Selection Macro</h3>
+<p>This macro will select all the lipids in a trajectory that has a membrane.</p>
+<div class="highlight"><pre><span></span><code><span class="n">atomselect</span> <span class="n">macro</span> <span class="n">lipid</span> <span class="p">{</span>
+ <span class="n">resname</span> <span class="n">DLPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">LPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SAPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SDPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DAPC</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="using-the-atomselect-command">Using the <code>atomselect</code> Command</h2>
+<p>From <a href="https://www.ks.uiuc.edu/Research/vmd/vmd-1.7.1/ug/node181.html">Using the <code>atomselect</code> command</a></p>
+<ol>
+<li>Create a selection given the selection text, molecule id, and optional frame number. The <code>atomselect</code> command creates an object, and returns the name of the new atom selection.  </li>
+<li>Then use the created selection to access the information about the atoms in the selections.</li>
+</ol>
+<h2 id="creating-multiple-representations">Creating multiple representations</h2>
+<div class="highlight"><pre><span></span><code><span class="n">modstyle</span> <span class="n">rep_number</span> <span class="n">molecule_number</span> <span class="n">rep_method</span><span class="p">:</span> <span class="c1"># use top for molecule number</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">NewCartoon</span> <span class="mf">0.300000</span> <span class="mf">10.000000</span> <span class="mf">4.100000</span> <span class="mi">0</span> <span class="c1"># drawing style is new cartoon</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">protein</span> <span class="c1"># selected atoms are protein</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">Structure</span> <span class="c1"># colors by secondary structure</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">addrep</span> <span class="mi">1</span>\
+<span class="n">mol</span> <span class="n">color</span> <span class="n">ResName</span>\
+<span class="n">mol</span> <span class="n">representation</span> <span class="n">VDW</span> <span class="mf">1.000000</span> <span class="mf">12.000000</span>\
+<span class="n">mol</span> <span class="n">selection</span> <span class="n">resname</span> <span class="n">LYS</span>\
+<span class="n">mol</span> <span class="n">material</span> <span class="n">Opaque</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">4</span> <span class="mi">0</span> <span class="n">QuickSurf</span> <span class="mf">1.000000</span> <span class="mf">0.500000</span> <span class="mf">1.000000</span> <span class="mf">1.000000</span>
+<span class="n">mol</span> <span class="n">modmaterial</span> <span class="mi">4</span> <span class="mi">0</span> <span class="n">Transparent</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">4</span> <span class="mi">0</span> <span class="n">Molecule</span>
+<span class="n">mol</span> <span class="n">color</span> <span class="n">Molecule</span>
+<span class="n">mol</span> <span class="n">representation</span> <span class="n">QuickSurf</span> <span class="mf">1.000000</span> <span class="mf">0.500000</span> <span class="mf">1.000000</span> <span class="mf">1.000000</span>
+<span class="n">mol</span> <span class="n">selection</span> <span class="n">protein</span>
+<span class="n">mol</span> <span class="n">material</span> <span class="n">Transparent</span>
+<span class="n">mol</span> <span class="n">modrep</span> <span class="mi">4</span> <span class="mi">0</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">delete</span> <span class="n">molecule_number</span>
+</code></pre></div>
+<p>Be sure that the molecule to load is in the current directory.</p>
+<div class="highlight"><pre><span></span><code><span class="n">source</span> <span class="n">filename</span><span class="o">.</span><span class="n">tcl</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">new</span> <span class="mi">1</span><span class="n">ubq</span><span class="o">.</span><span class="n">pdb</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">NewCartoon</span> <span class="mf">0.300000</span> <span class="mf">10.000000</span> <span class="mf">4.100000</span> <span class="mi">0</span>
+</code></pre></div>
+<p><code>set</code> <em><code>variable</code></em> <em><code>value</code></em><br />
+<em><code>$variable</code></em> refers to the value of <em><code>variable</code></em>.<br />
+Use the shortcut <code>top</code> to refer to the top molecule instead of a molecule ID.</p>
+<h2 id="selecting-lipids">Selecting Lipids</h2>
+<p>Download and install the <a href="https://sourceforge.net/projects/membplugin/">membplugin</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">resname</span> <span class="n">POPC</span> <span class="ow">and</span> <span class="n">name</span> <span class="s2">&quot;C[23].*&quot;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">name</span> <span class="s2">&quot;C[123]&quot;</span>
+</code></pre></div>
+<p>From <a href="https://www.ks.uiuc.edu/Research/vmd/mailing_list/vmd-l/29266.html">this site</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="n">N</span> <span class="s2">&quot;C1[1-5]&quot;</span> <span class="s2">&quot;H1[1-5].&quot;</span> <span class="n">P</span> <span class="s2">&quot;O1[1-4]&quot;</span> <span class="c1"># Headgroup only</span>
+<span class="n">name</span> <span class="s2">&quot;C[1-3]&quot;</span> <span class="s2">&quot;H.&quot;</span> <span class="s2">&quot;C[2-3]1&quot;</span> <span class="s2">&quot;O[2-3][1-2]&quot;</span> <span class="c1"># glycerol + carbonyl</span>
+<span class="n">name</span> <span class="s2">&quot;H.*[R-Z]&quot;</span> <span class="s2">&quot;C[2-3][2-9]&quot;</span> <span class="s2">&quot;C[2-3]1.&quot;</span> <span class="c1"># Acyl chain</span>
+</code></pre></div>
+<p>Although in Tcl scripts, the braces and double quotes need to be escaped so that the interpreter doesn't think they are a command. Ex:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;name </span><span class="se">\&quot;</span><span class="s2">H.*\[R-Z\]</span><span class="se">\&quot;</span><span class="s2"> </span><span class="se">\&quot;</span><span class="s2">C\[2-3\]\[2-9\]</span><span class="se">\&quot;</span><span class="s2"> </span><span class="se">\&quot;</span><span class="s2">C\[2-3\]1.</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>The <code>atomselect</code> command creates an object. </p>
+<h2 id="setting-up-vmd">Setting up VMD</h2>
+<h3 id="the-vmdrc-file">the <code>.vmdrc</code> file</h3>
+<p>type <code>menu list</code> in the Terminal window to get the list of names for the various menus.
+The <code>tkcon menu on</code> trick I got from the [VMD mailing list](the <code>tkcon</code> menu trick I got from <a href="https://www.ks.uiuc.edu/Research/vmd/mailing_list/vmd-l/19823.html">here</a></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># position and turn on menus</span>
+menu main on
+after idle <span class="o">{</span>
+  after <span class="m">2</span> <span class="o">{</span>
+    menu tkcon on
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># change directory</span>
+<span class="nb">cd</span> ~/vmd-work
+</code></pre></div>
+<h2 id="top-molecule">Top molecule</h2>
+<p>By default the last molecule loaded in the VMD is the top molecule.<br />
+There can be only one top molecule at a time.<br />
+The top molecule is indicated by a T flag in the VMD Main window.<br />
+The top molecule is the default molecule for mol commands when nothing is specified.</p>
+<h2 id="change-background-color">Change Background Color</h2>
+<div class="highlight"><pre><span></span><code><span class="n">color</span> <span class="n">Display</span> <span class="n">Background</span> <span class="n">white</span>
+</code></pre></div>
+<h2 id="color_1">Color</h2>
+<p><code>change rgb color</code><em><code>r g b</code></em>: Set rgb of <em>color</em> to <em>r g b</em>.</p>
+<p>rgb values have to be decimals.</p>
+<p>From Pymol (divide by 255):</p>
+<div class="highlight"><pre><span></span><code><span class="n">set_color</span> <span class="n">blueC</span><span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">150</span><span class="p">]</span> <span class="c1"># 0.078431 0.423529 0.588235</span>
+<span class="n">set_color</span> <span class="n">blueN</span><span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">93</span><span class="p">]</span> <span class="c1">#    0.015686 0.25098 0.364706</span>
+<span class="n">set_color</span> <span class="n">blueO</span><span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">118</span><span class="p">]</span> <span class="c1">#  0.039216 0.32549 0.462745</span>
+<span class="n">set_color</span> <span class="n">blueH</span><span class="o">=</span> <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">178</span><span class="p">]</span> <span class="c1"># 0.28819 0.57647 0.69804</span>
+<span class="n">set_color</span> <span class="n">blueS</span><span class="o">=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="mi">156</span><span class="p">]</span> <span class="c1"># 0.1961 0.47843 0.611765</span>
+</code></pre></div>
+<p>From the <a href="https://www.ks.uiuc.edu/Research/vmd/mailing_list/vmd-l/4880.html">vmd wiki</a></p>
+<ul>
+<li>See the vmd users manual to use a script to assign specific RGB colors to specific color scale values.</li>
+<li>Set the color scale data range to 0 to 1023.</li>
+<li>Then whatever beta/user value you assign to an atom will correspond directly to the color you want.</li>
+<li>Now you have 1024 colors you can assign any way you like.</li>
+</ul>
+<p>Script</p>
+<div class="highlight"><pre><span></span><code><span class="n">proc</span> <span class="n">setcolorscaleindex</span> <span class="p">{</span> <span class="n">index</span> <span class="n">r</span> <span class="n">g</span> <span class="n">b</span> <span class="p">}</span> <span class="p">{</span>
+  <span class="nb">set</span> <span class="n">colorindex</span> <span class="p">[</span><span class="n">expr</span> <span class="p">[</span><span class="n">colorinfo</span> <span class="n">num</span><span class="p">]</span> <span class="o">+</span> <span class="err">$</span><span class="n">index</span><span class="p">]</span>
+  <span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="err">$</span><span class="n">colorindex</span> <span class="err">$</span><span class="n">r</span> <span class="err">$</span><span class="n">g</span> <span class="err">$</span><span class="n">b</span>
+<span class="p">}</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">4</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">6</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="nb">all</span><span class="p">]</span>
+<span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mf">0.0</span> <span class="c1"># this sets the beta value for all atoms to 0</span>
+<span class="err">$</span><span class="n">sel</span> <span class="n">delete</span> <span class="c1"># delete the selection &quot;sel&quot;</span>
+<span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;name CA&quot;</span><span class="p">]</span> <span class="c1"># create a new selection, &quot;sel&quot;, that contains the alpha carbons</span>
+<span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mf">1.0</span> <span class="c1"># set the beta value for the alpha carbons to 1.0</span>
+<span class="err">$</span><span class="n">sel</span> <span class="n">delete</span> <span class="c1"># delete the selection</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">Beta</span> <span class="c1"># use the beta coloring scheme to color the molecule</span>
+<span class="c1">## note that the &#39;mol scaleminmax&#39; command has to be last...</span>
+<span class="n">mol</span> <span class="n">scaleminmax</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1023</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="err">$</span><span class="n">colorindex</span> <span class="err">$</span><span class="n">r</span> <span class="err">$</span><span class="n">g</span> <span class="err">$</span><span class="n">b</span>
+
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">40</span> <span class="mf">0.078431</span> <span class="mf">0.423529</span> <span class="mf">0.588235</span>
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">41</span> <span class="mf">0.015686</span> <span class="mf">0.25098</span> <span class="mf">0.364706</span>
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">42</span> <span class="mf">0.039216</span> <span class="mf">0.32549</span> <span class="mf">0.462745</span>
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">43</span> <span class="mf">0.28819</span> <span class="mf">0.57647</span> <span class="mf">0.69804</span>
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">44</span> <span class="mf">0.28819</span> <span class="mf">0.57647</span> <span class="mf">0.69804</span>
+<span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="mi">45</span> <span class="mf">0.1961</span> <span class="mf">0.47843</span> <span class="mf">0.611765</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">40</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">vdw</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;hydrophobic&quot;</span><span class="p">]</span> <span class="c1"># This creates a selection containing all the hydrophobic residues.</span>
+<span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">1</span> <span class="c1"># label all hydrophobic atoms by setting their beta values to 1.</span>
+</code></pre></div>
+<p><a href="https://paletton.com/#uid=1000u0kllllaFw0g0qFqFg0w0aF">Paletton.com</a></p>
+<h3 id="materials">Materials</h3>
+<p>See the <a href="https://www.ks.uiuc.edu/Research/vmd/current/ug/node88.html">VMD Materials wiki page</a>.</p>
+<h2 id="modifying-a-selection">Modifying a Selection</h2>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="n">cd</span> <span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span>
+<span class="n">mol</span> <span class="n">new</span> <span class="mi">1</span><span class="n">ubq</span><span class="o">.</span><span class="n">pdb</span> <span class="c1"># loaded as molecule 0</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">setcolorscaleindex</span> <span class="mi">40</span> <span class="mf">0.078431</span> <span class="mf">0.423529</span> <span class="mf">0.588235</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">41</span> <span class="mf">0.015686</span> <span class="mf">0.25098</span> <span class="mf">0.364706</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">42</span> <span class="mf">0.039216</span> <span class="mf">0.32549</span> <span class="mf">0.462745</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">43</span> <span class="mf">0.28819</span> <span class="mf">0.57647</span> <span class="mf">0.69804</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">44</span> <span class="mf">0.28819</span> <span class="mf">0.57647</span> <span class="mf">0.69804</span>
+<span class="n">setcolorscaleindex</span> <span class="mi">45</span> <span class="mf">0.1961</span> <span class="mf">0.47843</span> <span class="mf">0.611765</span>
+</code></pre></div>
+<hr />
+<p>another attempt at beta coloring</p>
+<div class="highlight"><pre><span></span><code><span class="nb">set</span> <span class="n">crystal</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;all&quot;</span><span class="p">]</span>
+<span class="err">$</span><span class="n">crystal</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">0</span>
+<span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;hydrophobic&quot;</span><span class="p">]</span>
+<span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">1</span>
+<span class="err">$</span><span class="n">crystal</span> <span class="nb">set</span> <span class="n">radius</span> <span class="mf">1.0</span>
+<span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">radius</span> <span class="mf">1.5</span> 
+</code></pre></div>
+<p><a href="https://www.ks.uiuc.edu/Research/vmd/vmd-1.8.3/ug/node183.html">Changing the color scale definitions</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">proc</span> <span class="n">tricolor_scale</span> <span class="p">{}</span> <span class="p">{</span>
+  <span class="nb">set</span> <span class="n">color_start</span> <span class="p">[</span><span class="n">colorinfo</span> <span class="n">num</span><span class="p">]</span>
+  <span class="n">display</span> <span class="n">update</span> <span class="n">off</span>
+  <span class="k">for</span> <span class="p">{</span><span class="nb">set</span> <span class="n">i</span> <span class="mi">0</span><span class="p">}</span> <span class="p">{</span><span class="err">$</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">}</span> <span class="p">{</span><span class="n">incr</span> <span class="n">i</span><span class="p">}</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">{</span><span class="err">$</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">}</span> <span class="p">{</span>
+      <span class="nb">set</span> <span class="n">r</span> <span class="mi">1</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">g</span> <span class="mi">0</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">b</span> <span class="mi">0</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">{</span><span class="err">$</span><span class="n">i</span> <span class="o">==</span> <span class="mi">511</span><span class="p">}</span> <span class="p">{</span>
+      <span class="nb">set</span> <span class="n">r</span> <span class="mi">1</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">g</span> <span class="mi">1</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">b</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">{</span><span class="err">$</span><span class="n">i</span> <span class="o">==</span> <span class="mi">513</span><span class="p">}</span> <span class="p">{</span>
+      <span class="nb">set</span> <span class="n">r</span> <span class="mi">0</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">g</span> <span class="mi">0</span><span class="p">;</span>  <span class="nb">set</span> <span class="n">b</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="p">[</span><span class="n">expr</span> <span class="err">$</span><span class="n">i</span> <span class="o">+</span> <span class="err">$</span><span class="n">color_start</span>     <span class="p">]</span> <span class="err">$</span><span class="n">r</span> <span class="err">$</span><span class="n">g</span> <span class="err">$</span><span class="n">b</span>
+  <span class="p">}</span>
+  <span class="n">display</span> <span class="n">update</span> <span class="n">on</span>
+<span class="p">}</span>
+
+<span class="n">tricolor_scale</span>
+</code></pre></div>
+<hr />
+<p>Once the beta values for atoms have been changed, they stay changed. You can then assign a color to a beta value, and then choose the coloring method "beta" to assign the color to a beta value. </p>
+<p>This worked:</p>
+<div class="highlight"><pre><span></span><code><span class="n">proc</span> <span class="n">setcolorscaleindex</span> <span class="p">{</span> <span class="n">index</span> <span class="n">r</span> <span class="n">g</span> <span class="n">b</span> <span class="p">}</span> <span class="p">{</span>
+  <span class="nb">set</span> <span class="n">colorindex</span> <span class="p">[</span><span class="n">expr</span> <span class="p">[</span><span class="n">colorinfo</span> <span class="n">num</span><span class="p">]</span> <span class="o">+</span> <span class="err">$</span><span class="n">index</span><span class="p">]</span>
+  <span class="n">color</span> <span class="n">change</span> <span class="n">rgb</span> <span class="err">$</span><span class="n">colorindex</span> <span class="err">$</span><span class="n">r</span> <span class="err">$</span><span class="n">g</span> <span class="err">$</span><span class="n">b</span>
+<span class="p">}</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">90</span> <span class="o">%</span> 
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">90</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">91</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">92</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">93</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">94</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">4</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">95</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">96</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">6</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">97</span> <span class="o">%</span> <span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="nb">all</span><span class="p">]</span>
+<span class="n">atomselect6</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">98</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">4</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">99</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mf">0.0</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">100</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">3</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">101</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">2</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">102</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">6</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">103</span> <span class="o">%</span> <span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">Beta</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">104</span> <span class="o">%</span> <span class="n">mol</span> <span class="n">scaleminmax</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1023</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">105</span> <span class="o">%</span> <span class="n">mol</span> <span class="n">scaleminmax</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1023</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">106</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">4</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">107</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">3</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">108</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">2</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">109</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">110</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">5</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">111</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">6</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">112</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">0</span> <span class="mf">0.078431</span> <span class="mf">0.423529</span> <span class="mf">0.588235</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">113</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">6</span> <span class="mf">0.1961</span> <span class="mf">0.47843</span> <span class="mf">0.611765</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">114</span> <span class="o">%</span> <span class="n">mol</span> <span class="n">scaleminmax</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1023</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">115</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">0</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">116</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">1</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">117</span> <span class="o">%</span> <span class="n">setcolorscaleindex</span> <span class="mi">43</span> <span class="mf">0.28819</span> <span class="mf">0.57647</span> <span class="mf">0.69804</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">118</span> <span class="o">%</span> <span class="n">mol</span> <span class="n">scaleminmax</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1023</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">119</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">43</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">120</span> <span class="o">%</span> <span class="err">$</span><span class="n">sel</span> <span class="nb">set</span> <span class="n">beta</span> <span class="mi">42</span>
+<span class="o">&gt;</span><span class="n">Main</span><span class="o">&lt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tutorials</span><span class="p">)</span> <span class="mi">121</span> <span class="o">%</span> 
+</code></pre></div>
+<p>Remember to use <code>logfile &lt;filename&gt;</code> to log commands to a file that you can turn into a script. </p>
+<hr />
+<h2 id="vmd-and-namd-tutorials">VMD and NAMD tutorials</h2>
+<p><a href="http://www.ks.uiuc.edu/Training/Tutorials/qwikmd/qwikmd-tutorial.pdf">quickMD tutorial</a><br />
+<a href="https://bioinformaticsreview.com/20200619/a-quick-md-simulation-using-namd-and-vmd/">Tutorial: A quick MD simulation using NAMD and VMD</a><br />
+<a href="https://hprc.tamu.edu/files/training/2021/Spring/HPRC-Classical-NAMD-tutorial.pdf">HPRC Short Course: Classical Molecular Dynamics with NAMD</a>  </p>
+<h2 id="scripting-in-vmd">Scripting in VMD</h2>
+<p>This was taken from the <a href="https://www.ks.uiuc.edu/Training/Tutorials/vmd/tutorial-html/node4.html">Scripting in VMD</a> web page.</p>
+<h3 id="quick-tutorial">Quick tutorial</h3>
+<ul>
+<li>Start a VMD session.</li>
+<li>Select <em>Extensions → Tk Console</em>.</li>
+<li>Download <code>1ubq.pdb</code> and move it to the <code>vmd-work</code> directory.</li>
+<li>Change to the <code>vmd-work</code> directory using the console.</li>
+<li>Type <code>mol new 1ubq.pdb</code> and click enter.</li>
+<li>Type <code>set crystal [atomselect top "all"]</code> in the <em>TkConsole</em> window.</li>
+</ul>
+<p>This creates a <code>crystal</code> selection that we can do stuff with.</p>
+<ul>
+<li>Type <code>$crystal num</code> in the <em>Tk Console window</em>.</li>
+</ul>
+<h2 id="movie-making">Movie making</h2>
+<p>Purpose: to make a video illustration of a MD simulation of the Covid-19 spike protein in a membrane that I can use for teaching. This is also a nice exercise for learning VMD.</p>
+<p>Here is a nice short tutorial on <a href="https://www.youtube.com/watch?v=lueqjpjo3yY">Movie Making from molecular dynamics simulation with VMD</a>, most importantly, use the <em>trajectory smoothing</em> function.</p>
+<p><iframe src="https://www.youtube.com/embed/lueqjpjo3yY" style="position: relative; width: 100%; height: 22.172vw" frameborder="0" allowfullscreen></iframe></p>
+<p>There is a nice VMD function for <a href="http://www.ks.uiuc.edu/Research/vmd/current/ug/node24.html">Tracking Script Command Versions of the GUI Actions</a>. </p>
+<p>I can go through a bunch of tutorials and then use the script commands.</p>
+<p><a href="http://glycam.org/docs/help/2015/10/02/visualizing-pdb-files-containing-glycans/">visualizing glycans in protein structures</a></p>
+<h3 id="random-notes">Random Notes</h3>
+<p>I found a <a href="https://charmm-gui.org/?doc=archive&amp;lib=covid19">Covid-19 spike protein trajectory</a> on the <a href="https://charmm-gui.org/">CHARMM-GUI</a> website.</p>
+<p><a href="http://www.ks.uiuc.edu/Research/vmd/minitutorials/tachyonao/">ambient occlusion lighting with tachyon</a></p>
+<p>Need to learn:</p>
+<ul>
+<li>how to select the different parts of the molecules</li>
+<li>how to make a movie from the trajectory</li>
+</ul>
+<p>A good place to start is the <a href="http://www.ks.uiuc.edu/Research/vmd/current/ug/ug.html">VMD User's Guide</a>.</p>
+<h2 id="saving-an-image">Saving an Image</h2>
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../docking-tutorials/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Docking Tutorials" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Docking Tutorials
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../conda-colab/" class="md-footer__link md-footer__link--next" aria-label="Next: Conda on Colab" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Conda on Colab
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 David G Oppenheimer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../overrides/assets/javascripts/bundle.90528257.min.js"></script>
+
+  </body>
+</html>

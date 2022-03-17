@@ -1,0 +1,1767 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes for running and analyzing molecular dynamics simulations">
+      
+      
+        <meta name="author" content="David G Oppenheimer">
+      
+      
+        <link rel="canonical" href="https://dgoppenheimer.github.io/mk-test/user-guide/building-this-site/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+    
+    
+      
+        <title>Building This Site - Molecular Dynamics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50e68009.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../overrides/assets/stylesheets/main.d9227bb8.min.css">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#publishing-the-site" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Molecular Dynamics" class="md-header__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Molecular Dynamics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building This Site
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introduction/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/ligplot/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course/" class="md-tabs__link">
+        Course
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Molecular Dynamics" class="md-nav__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Molecular Dynamics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Building This Site
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Building This Site
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-the-site" class="md-nav__link">
+    Publishing the Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing the Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-deployment-of-site" class="md-nav__link">
+    Manual Deployment of Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Deployment of Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-the-site" class="md-nav__link">
+    Customizing the Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing the Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-extracss-file" class="md-nav__link">
+    Add an extra.css file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-landing-page" class="md-nav__link">
+    Create a Landing Page
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Landing Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-the-get-insiders-button" class="md-nav__link">
+    Remove the Get Insiders Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-text-on-the-landing-page" class="md-nav__link">
+    Change Text on the Landing Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-colors-on-the-landing-page" class="md-nav__link">
+    Change Colors on the Landing Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjust-header" class="md-nav__link">
+    Adjust Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-the-favicon-and-logo" class="md-nav__link">
+    Change the favicon and logo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-page-title" class="md-nav__link">
+    Changing Page Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    Navigation
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anchor-tracking" class="md-nav__link">
+    Anchor Tracking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation-tabs" class="md-nav__link">
+    Navigation Tabs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-to-top-button" class="md-nav__link">
+    Back to Top Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#footnotes" class="md-nav__link">
+    Footnotes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathjax" class="md-nav__link">
+    MathJax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-for-video" class="md-nav__link">
+    Plugin for Video
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin for Video">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-captions" class="md-nav__link">
+    Image Captions
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Captions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-locally-served-image" class="md-nav__link">
+    a locally served image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-plotly/" class="md-nav__link">
+        Using Plotly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-amber/" class="md-nav__link">
+        Analysis of MD Simulations Using AMBER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-bio3d/" class="md-nav__link">
+        Protein Structure Networks with Bio3D
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-gromacs/" class="md-nav__link">
+        analysis-gromacs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-sims/mdsim-gromacs/" class="md-nav__link">
+        Molecular Dynamics Simulations with GROMACS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-sims/mdsim-mdanalysis/" class="md-nav__link">
+        MD Simulations Using MDAnalysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          MD Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MD Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          MD Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-vmd/" class="md-nav__link">
+        MD Analysis with VMD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligplot/" class="md-nav__link">
+        LigPlot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligpargen/" class="md-nav__link">
+        LigParGen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gromacs-tutorials/" class="md-nav__link">
+        GROMACS Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/docking-tutorials/" class="md-nav__link">
+        Docking Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/using-vmd/" class="md-nav__link">
+        Using VMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/conda-colab/" class="md-nav__link">
+        Conda on Colab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/color-by-rmsd/" class="md-nav__link">
+        Coloring by RMSD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/example-articles/" class="md-nav__link">
+        Example Journal Articles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../course/">Course</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Course" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/course-organization/" class="md-nav__link">
+        Course Organization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab00-preparation/" class="md-nav__link">
+        Lab 00
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab01-jupyter-colab/" class="md-nav__link">
+        Lab 01
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#publishing-the-site" class="md-nav__link">
+    Publishing the Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing the Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-deployment-of-site" class="md-nav__link">
+    Manual Deployment of Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Deployment of Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-the-site" class="md-nav__link">
+    Customizing the Site
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing the Site">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-extracss-file" class="md-nav__link">
+    Add an extra.css file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-landing-page" class="md-nav__link">
+    Create a Landing Page
+  </a>
+  
+    <nav class="md-nav" aria-label="Create a Landing Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-the-get-insiders-button" class="md-nav__link">
+    Remove the Get Insiders Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-text-on-the-landing-page" class="md-nav__link">
+    Change Text on the Landing Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-colors-on-the-landing-page" class="md-nav__link">
+    Change Colors on the Landing Page
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjust-header" class="md-nav__link">
+    Adjust Header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-the-favicon-and-logo" class="md-nav__link">
+    Change the favicon and logo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-page-title" class="md-nav__link">
+    Changing Page Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    Navigation
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anchor-tracking" class="md-nav__link">
+    Anchor Tracking
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation-tabs" class="md-nav__link">
+    Navigation Tabs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-to-top-button" class="md-nav__link">
+    Back to Top Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    Tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#footnotes" class="md-nav__link">
+    Footnotes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathjax" class="md-nav__link">
+    MathJax
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-for-video" class="md-nav__link">
+    Plugin for Video
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin for Video">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-captions" class="md-nav__link">
+    Image Captions
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Captions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-locally-served-image" class="md-nav__link">
+    a locally served image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">  
+              
+                
+
+  <h1>Building This Site</h1>
+
+<h2></h2>
+<div class="highlight"><pre><span></span><code>pip install mkdocs-material
+
+<span class="nb">cd</span> ~/Sites
+mkdir mk-test
+<span class="nb">cd</span> mk-test
+mkdocs new .
+</code></pre></div>
+<p>Add to <code>config.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span><span class="w"></span>
+</code></pre></div>
+<h2 id="publishing-the-site">Publishing the Site</h2>
+<p>From <a href="https://squidfunk.github.io/mkdocs-material/publishing-your-site/">Publishing your site</a></p>
+<p>Create <code>.github/workflows/ci.yml</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ci</span><span class="w"> </span>
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w"> </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.x</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs-material</span><span class="w"> </span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs gh-deploy --force</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>git init
+git status
+git add .
+git commit -m <span class="s2">&quot;initial commit&quot;</span>
+</code></pre></div>
+<p>Create a new repository on GitHub.</p>
+<div class="highlight"><pre><span></span><code>git remote add origin https://github.com/dgoppenheimer/mk-test.git
+git branch -M main
+git push -u origin main
+</code></pre></div>
+<p>Go to <code>https://github.com/dgoppenheimer/mk-test/settings/pages</code></p>
+<p>Choose <code>gh-pages</code> branch and click <code>Save</code>.</p>
+<p>Add some text to <code>index.md</code></p>
+<p>Save, commit and <code>git push</code></p>
+<p>go to <code>https://github.com/dgoppenheimer/mk-test/actions</code> and watch the site being built.</p>
+<p>Check the site at <code>https://dgoppenheimer.github.io/mk-test/</code></p>
+<p>Add to mkdocs.yml</p>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<p>Create a directory and a file</p>
+<div class="highlight"><pre><span></span><code>cd docs
+mkdir user-guide
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<div class="highlight"><pre><span></span><code>touch .gitignore
+<span class="nb">echo</span> <span class="s2">&quot;.DS_Store&quot;</span> &gt;&gt; .gitignore
+<span class="nb">echo</span> <span class="s2">&quot;.gitignore&quot;</span> &gt;&gt; .gitignore
+</code></pre></div>
+<p>Change site name in <code>mkdocs.yml</code></p>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>The deployment of the site to the <code>gh-pages</code> branch using gh-actions stopped working after a while. I had never pulled that branch to my local repository, and the build on GitHub pages completed, but showed the following warning. 
+<div class="highlight"><pre><span></span><code>WARNING  -  Version check skipped: No version specified <span class="k">in</span> previous deployment.
+</code></pre></div>
+After trying to get it working (and failing) I decided to switch to manual deployment using <code>mkdocs gh-deploy --force</code>.</p>
+</div>
+<h3 id="manual-deployment-of-site">Manual Deployment of Site</h3>
+<ul>
+<li>Remove the <code>ci.yml</code> file from <code>.github/workflows/</code> directory.</li>
+<li>Delete the <code>gh-pages</code> branch on GitHub.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git push origin --delete gh-pages
+</code></pre></div>
+<ul>
+<li>Create a new <code>gh-pages</code> branch.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git checkout gh-pages
+git push -u origin gh-pages
+git checkout main
+Switched to branch <span class="s1">&#39;main&#39;</span>
+Your branch is up to date with <span class="s1">&#39;origin/main&#39;</span>.
+</code></pre></div>
+<ul>
+<li>Deploy the site.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdocs gh-deploy --force
+</code></pre></div>
+<ul>
+<li>Add the <code>site/</code> directory to <code>.gitignore</code>.</li>
+<li>Check the site at <a href="https://dgoppenheimer.github.io/mk-test/">https://dgoppenheimer.github.io/mk-test/</a>.</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<h4 id="update">Update</h4>
+<p>I thought I would try the automatic deployment one more time.</p>
+<ul>
+<li>Move the <code>ci.yml</code> file back to <code>.github/workflows/</code> directory.</li>
+</ul>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>Still no joy.</p>
+</div>
+<ul>
+<li>Create a <code>requirements.txt</code> file with the following contents (see below).</li>
+<li>Add the <code>requirements.txt</code> file to the root of your project directory and add it to version control.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I got the file contents below from the<a href="https://github.com/squidfunk/mkdocs-material/blob/master/requirements.txt"> Mkdocs developer GitHub repository</a> and modified it for my needs.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">requirements.txt</p>
+<div class="highlight"><pre><span></span><code># Copyright (c) 2016-2022 Martin Donath &lt;martin.donath@squidfunk.com&gt;
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the &quot;Software&quot;), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Direct dependencies
+jinja2&gt;=2.11.1
+markdown&gt;=3.2
+mkdocs&gt;=1.2.3
+mkdocs-video&gt;=1.1.0
+mkdocs-material&gt;=8.0
+mkdocs-material-extensions&gt;=1.0
+pygments&gt;=2.10
+pymdown-extensions&gt;=9.0
+</code></pre></div>
+</div>
+<p>Create a <code>gh-pages.yml</code> file with the contents listed below and put it into the <code>.github/workflows/</code> directory.</p>
+<p>I got this <code>gh-pages.yml</code> file from <a href="https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-static-site-generators-with-python">peaceiris' action-gh-pages GitHub repository</a></p>
+<p>Contents of the <code>gh-pages.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub Pages</span><span class="w"></span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"></span>
+
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-20.04</span><span class="w"></span>
+<span class="w">    </span><span class="nt">concurrency</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.workflow }}-${{ github.ref }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upgrade pip</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">          </span><span class="no"># install pip=&gt;20.1 to use &quot;pip cache dir&quot;</span><span class="w"></span>
+<span class="w">          </span><span class="no">python3 -m pip install --upgrade pip</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get pip cache dir</span><span class="w"></span>
+<span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-cache</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;::set-output name=dir::$(pip cache dir)&quot;</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cache dependencies</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v2</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.pip-cache.outputs.dir }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.txt&#39;) }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">            </span><span class="no">${{ runner.os }}-pip-</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3 -m pip install -r ./requirements.txt</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs build</span><span class="w"></span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
+<span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./site</span><span class="w"></span>
+</code></pre></div>
+<h2 id="customizing-the-site">Customizing the Site</h2>
+<h3 id="add-an-extracss-file">Add an <code>extra.css</code> file</h3>
+<p>See <a href="https://stackoverflow.com/questions/63017898/how-do-i-specify-custom-primary-color-for-mkdocs-material">How do I specify custom primary color for mkdocs-material?</a><br />
+And <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/">Changing the colors</a><br />
+And <a href="https://squidfunk.github.io/mkdocs-material/customization/">Customization</a></p>
+<h2 id="create-a-landing-page">Create a Landing Page</h2>
+<p><a href="https://stackoverflow.com/questions/63438788/how-to-add-a-landing-page-to-a-mkdocs-doc-site-using-mkdocs-material">How to add a landing page to a mkdocs doc site using mkdocs-material?</a></p>
+<p>Create an <code>overrides</code> directory</p>
+<p>Reference this in <code>mkdocs.yml</code></p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">custom_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">overrides</span><span class="w"></span>
+</code></pre></div>
+<p>Since the custom directory is declared, you need to change </p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="o">%</span> <span class="n">extends</span> <span class="s2">&quot;overrides/main.html&quot;</span> <span class="o">%</span><span class="p">}</span>
+</code></pre></div>
+<p>to</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="o">%</span> <span class="n">extends</span> <span class="s2">&quot;main.html&quot;</span> <span class="o">%</span><span class="p">}</span>
+</code></pre></div>
+<p>in <code>main-styles.html</code> and <code>main.html</code></p>
+<p>okay, I got most of the home page stuff shown on <a href="https://leverage.binbash.com.ar/">Binbash Leverage™ Documentation</a></p>
+<p>Now I need to customize it.</p>
+<p>Start with the footer.</p>
+<p>Compare it to the Material footer.</p>
+<p>Try and replace the bin bash items with the material items.</p>
+<p>need <code>overrides/assets/stylesheets</code> directory
+ add the css files</p>
+<p>The image is a bit too far to the right
+search the css file in the overrides directory 
+ change .mdx-hero__image{order:1;transform:translateX(1rem);</p>
+<p>from 4rem to 1rem to move the image to the left a bit</p>
+<p>In the <code>home.html</code> file there is reference to <code>config.site_description</code> that has some text in it. The precedes the text: <code>Set up in 5 minutes</code>. It is not clear why the <code>Set up in 5 minutes</code> text was not added to <code>config.site_description</code>, or why the text in <code>config.site_description</code> was not added to <code>home.html</code>. Now there are two files to change for the same block of text. </p>
+<p>The <code>config.site_description</code> refers to the <code>mkdocs.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">site_description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span><span class="w"></span>
+<span class="w">  </span><span class="no">Create a branded static site from a set of Markdown files to host the</span><span class="w"></span>
+<span class="w">  </span><span class="no">documentation of your Open Source or commercial project</span><span class="w"></span>
+</code></pre></div>
+<p>Add some more stuff to the <code>mkdocs.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">site_author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">David G Oppenheimer</span><span class="w"></span>
+<span class="nt">site_description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span><span class="w"></span>
+<span class="w">  </span><span class="no">Notes on carrying out and analyzing the results from molecular dynamics simulations</span><span class="w"></span>
+
+<span class="c1"># Copyright</span><span class="w"></span>
+<span class="nt">copyright</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Copyright &amp;copy; 2022 David G Oppenheimer</span><span class="w"></span>
+</code></pre></div>
+<h3 id="remove-the-get-insiders-button">Remove the <code>Get Insiders</code> Button</h3>
+<p>Delete the following from <code>home.html</code>:</p>
+<div class="highlight"><pre><span></span><code>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ &#39;insiders/&#39; | url }}&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Material for MkDocs Insiders&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;md-button&quot;</span><span class="p">&gt;</span>
+      Get Insiders
+    <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="change-text-on-the-landing-page">Change Text on the Landing Page</h3>
+<p>In <code>home.html</code>, make the following changes:</p>
+<p>Remove the <code>Set up in 5 minutes.</code> text.<br />
+Change <code>Technical documentation that just works</code> to <code>Molecular dynamics simulations for fun and profit</code><br />
+Change <code>Quick Start</code> to <code>Get Started</code>.</p>
+<p>Test the site on GitHub.</p>
+<p>No joy.</p>
+<p>Add <code>site_url: https://dgoppenheimer.github.io/mk-test/</code> to <code>mkdocs.yml</code>.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<h3 id="change-colors-on-the-landing-page">Change Colors on the Landing Page</h3>
+<p>The lower purple is okay, but I want to see how it looks with a lighter blue on top.</p>
+<p>Add this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">palette</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">blue</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>So far, so good.</p>
+</div>
+<h3 id="adjust-header">Adjust Header</h3>
+<p>I want to remove the <code>For updates follow @squidfunk on Twitter</code> banner from the top of the Landing Page. This is declared in the <code>docs/overrides/main.html</code> file. Delete the following:</p>
+<div class="highlight"><pre><span></span><code>{% block announce %}
+  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://twitter.com/squidfunk&quot;</span><span class="p">&gt;</span>
+    For updates follow <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>@squidfunk<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> on
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;twemoji twitter&quot;</span><span class="p">&gt;</span>
+      {% include &quot;.icons/fontawesome/brands/twitter.svg&quot; %}
+    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Twitter<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+{% endblock %}
+</code></pre></div>
+<p>The footer is missing from the front page, but that's okay--it's not really needed.</p>
+<h3 id="change-the-favicon-and-logo">Change the favicon and logo</h3>
+<p>See <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/">Changing the logo and icons</a> for instructions.</p>
+<p>Add files to the appropriate directories and add this to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">logo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/logo.svg</span><span class="w"></span>
+<span class="w">  </span><span class="nt">favicon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/favicon.png</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Worked like a charm.</p>
+</div>
+<h2 id="changing-page-title">Changing Page Title</h2>
+<p>The <code>nav</code> part of <code>mkdocs.yml</code> takes precedence when setting the page title. But I want a longer title on the page and a shorter one for the navigation links. I found this solution in the <a href="https://github.com/mkdocs/mkdocs/issues/1795">mkdocs issues</a>. Put this code in your <code>/overrides/main.html</code> file.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">extends</span> <span class="s2">&quot;base.html&quot;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">page.toc</span><span class="o">|</span><span class="nf">first</span> <span class="k">is</span> <span class="nf">defined</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">set</span> <span class="nv">_title</span> <span class="o">=</span> <span class="nv">page.toc.items</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="nv">.title</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">set</span> <span class="nv">_title</span> <span class="o">=</span> <span class="nv">page.title</span><span class="o">|</span><span class="nf">striptags</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">block</span> <span class="nv">htmltitle</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;title&gt;</span><span class="cp">{{</span> <span class="nv">_title</span> <span class="cp">}}</span><span class="x">&lt;/title&gt;</span>
+<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+</code></pre></div>
+<h2 id="navigation">Navigation</h2>
+<p>See <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/">Setting up navigation</a> in the Material theme documentation for excellent instructions.</p>
+<h3 id="anchor-tracking">Anchor Tracking</h3>
+<p>Add the following to the <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tracking</span><span class="w"></span>
+</code></pre></div>
+<h3 id="navigation-tabs">Navigation Tabs</h3>
+<p>Add the following to the <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tabs</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.tabs.sticky</span><span class="w"></span>
+</code></pre></div>
+<h3 id="back-to-top-button">Back to Top Button</h3>
+<p>Add the following to the <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">features</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">navigation.top</span><span class="w"></span>
+</code></pre></div>
+<p>Okay, all these features so far are working perfectly. The rest is pretty straightforward--just add and organize content.</p>
+<h3 id="tags">Tags</h3>
+<p>I'm not sure that the tags feature will be useful on this site. I say this because the search feature provided by MkDocs and the Material theme appears to be excellent.</p>
+<p>Add the following to the <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">meta</span><span class="w"></span>
+<span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tags</span><span class="w"></span>
+</code></pre></div>
+<h3 id="footnotes">Footnotes</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">footnotes</span><span class="w"></span>
+</code></pre></div>
+<h3 id="mathjax">MathJax</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">$$</span>
+<span class="err">\</span><span class="nx">operatorname</span><span class="p">{</span><span class="nx">ker</span><span class="p">}</span> <span class="nx">f</span><span class="o">=</span><span class="err">\</span><span class="p">{</span><span class="nx">g</span><span class="err">\</span><span class="ow">in</span> <span class="nx">G</span><span class="o">:</span><span class="nx">f</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="o">=</span><span class="nx">e_</span><span class="p">{</span><span class="nx">H</span><span class="p">}</span><span class="err">\</span><span class="p">}{</span><span class="err">\</span><span class="nx">mbox</span><span class="p">{.}}</span>
+<span class="nx">$$</span>
+</code></pre></div>
+<div class="arithmatex">\[
+\operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
+\]</div>
+<h2 id="plugin-for-video">Plugin for Video</h2>
+<p><a href="https://github.com/soulless-viewer/mkdocs-video">mkdocs-video plugin</a></p>
+<p>Images used for Jupyter need an odd syntax, but local images can be standard Markdown. Also can use html in markdown.</p>
+<h3 id="usage">Usage</h3>
+<div class="highlight"><pre><span></span><code>![<span class="nt">type:video</span>](<span class="na">https://www.youtube.com/embed/LXb3EKWsInQ</span>)
+</code></pre></div>
+<h2 id="image-captions">Image Captions</h2>
+<p><a href="https://github.com/Evidlo/markdown_captions">markdown_captions</a></p>
+<p>Install using <code>pip</code>.</p>
+<div class="highlight"><pre><span></span><code>pip install markdown-captions
+</code></pre></div>
+<p>Use the extension as follows.</p>
+<p>Also using the Markdown extension, <code>attr_list</code>.</p>
+<div class="highlight"><pre><span></span><code>![<span class="nt">image caption</span>](<span class="na">https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true</span>){: style=&quot;height:150px;width:150px&quot;&quot;}
+</code></pre></div>
+<p>Add the following to <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">markdown_captions</span><span class="w"></span>
+</code></pre></div>
+<p><img alt="image caption" src="https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true" style="height:150px;width:150px" /></p>
+<p>Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp? Serp er zerpus merp berps terpus derperker cerp ler derp? Sherlamer derpler re, sherp derpus. Mer ner serp derpus cerp derpler ler perper. Herderder derp derpsum mer!</p>
+<p>You can see that <code>markdown_captions</code> cannot use the <code>attr_list</code> without making a mess of the resulting figure and caption.</p>
+<p>From the <a href="https://squidfunk.github.io/mkdocs-material/reference/images/#image-alignment">Images section</a> of the Material documentation:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">figure</span> <span class="na">markdown</span><span class="p">&gt;</span>
+  ![Image title](https://dummyimage.com/600x400/){ width=&quot;300&quot; align=&quot;right&quot;}
+  <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>Image caption<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</code></pre></div>
+<figure>
+<p><img _="," align="right" alt="Image caption" src="https://dummyimage.com/600x400/" width="300" />
+  </p>
+<figcaption>Image caption</figcaption>
+</figure>
+<p>With no width attribute:</p>
+<figure>
+<p><img alt="Image caption" src="https://dummyimage.com/600x400/" />
+  </p>
+<figcaption>Image caption</figcaption>
+</figure>
+<p>Below, image caption and left alignment was specified.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">figure</span> <span class="na">markdown</span><span class="p">&gt;</span>
+  ![alt](https://dummyimage.com/250x250/){ align=&quot;left&quot; }
+  <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>Image caption<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</code></pre></div>
+<figure>
+<p><img align="left" alt="alt" src="https://dummyimage.com/250x250/" />
+  </p>
+<figcaption>Image caption</figcaption>
+</figure>
+<p>Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?</p>
+<p>But the alignment does not work.</p>
+<p>It looks like the alignment will work only within <code>markdown</code>, but not within <code>html</code>.</p>
+<div class="highlight"><pre><span></span><code>![<span class="nt">Image title</span>](<span class="na">https://dummyimage.com/200x200/eee/aaa</span>){ align=&quot;left&quot; }
+</code></pre></div>
+<p>Renders to:</p>
+<p><img align="left" alt="Image title" src="https://dummyimage.com/200x200/eee/aaa" /></p>
+<p>Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?</p>
+<p>But you don't get a caption.</p>
+<p><br/>
+<br/>
+<br/>
+<br/></p>
+<p><img align="left" alt="Image title" src="https://dummyimage.com/400x400/eee/aaa" /></p>
+<p>Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp?</p>
+<p><br/>
+<br/>
+<br/>
+<br/></p>
+<p>For Google Colab images, using <code>markdown</code> in <code>html</code> allows both resizing the image and specifying its alignment. But you still don't get a caption.</p>
+<div class="highlight"><pre><span></span><code>[<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;connect to a runtime&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;250&quot;</span> <span class="na">align</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">/&gt;</span>](https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true)
+</code></pre></div>
+<p><a href="https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/connect.png?raw=true" alt="connect to a runtime" width="250" align="right"/></a></p>
+<p>One last attempt.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">figure</span> <span class="na">markdown</span><span class="p">&gt;</span>
+  ![<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://dummyimage.com/600x400/&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;dummy image&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;250&quot;</span> <span class="na">align</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">/&gt;</span>](https://dummyimage.com/600x400/)
+  <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>Caption: this image should be small and on the right<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</code></pre></div>
+<figure>
+<p><a href="https://dummyimage.com/600x400/"><img src="https://dummyimage.com/600x400/" alt="dummy image" width="250" align="right"/></a>
+  </p>
+<figcaption>Caption: this image should be small and on the right</figcaption>
+</figure>
+<figure>
+<p><a href="https://dummyimage.com/600x400/"><img src="https://dummyimage.com/600x400/" alt="dummy image" width="250"/></a>
+  </p>
+<figcaption>Caption: this image should be small in the center</figcaption>
+</figure>
+<h4 id="a-locally-served-image">a locally served image</h4>
+<div class="highlight"><pre><span></span><code>![an image](../assets/images/using-plotly/fig1.png){ width=&quot;300&quot; }
+</code></pre></div>
+<p>Renders to </p>
+<p><img alt="an image" src="../../assets/images/using-plotly/fig1.png" width="300" /></p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">figure</span> <span class="na">markdown</span><span class="p">&gt;</span>
+  ![alt](../assets/images/using-plotly/fig1.png){ width=&quot;300&quot; }
+  <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>Image caption<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Renders to </p>
+<figure>
+<p><img alt="alt" src="../../assets/images/using-plotly/fig1.png" width="300" />
+  </p>
+<figcaption>Image caption</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Okay, this is not perfect, but works well enough. I can get images and resize them for the Jupyter notebooks, and I can serve local images for testing purposes. I can get captions and alignment some of the time.</p>
+</div>
+<p>more text</p>
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../getting-started/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Getting Started
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../using-plotly/" class="md-footer__link md-footer__link--next" aria-label="Next: Using Plotly" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Using Plotly
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 David G Oppenheimer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../overrides/assets/javascripts/bundle.90528257.min.js"></script>
+
+  </body>
+</html>

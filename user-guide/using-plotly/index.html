@@ -1,0 +1,1614 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes for running and analyzing molecular dynamics simulations">
+      
+      
+        <meta name="author" content="David G Oppenheimer">
+      
+      
+        <link rel="canonical" href="https://dgoppenheimer.github.io/mk-test/user-guide/using-plotly/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+    
+    
+      
+        <title>Using Plotly - Molecular Dynamics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50e68009.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../overrides/assets/stylesheets/main.d9227bb8.min.css">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-objectives" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Molecular Dynamics" class="md-header__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Molecular Dynamics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using Plotly
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../introduction/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/ligplot/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../course/" class="md-tabs__link">
+        Course
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Molecular Dynamics" class="md-nav__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Molecular Dynamics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building-this-site/" class="md-nav__link">
+        Building This Site
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Using Plotly
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Using Plotly
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-images-of-plots" class="md-nav__link">
+    Saving Images of Plots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-plotly-in-colab" class="md-nav__link">
+    Using Plotly in Colab
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Plotly in Colab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#styling-plots" class="md-nav__link">
+    Styling Plots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-plots" class="md-nav__link">
+    Making Plots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-amber/" class="md-nav__link">
+        Analysis of MD Simulations Using AMBER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-bio3d/" class="md-nav__link">
+        Protein Structure Networks with Bio3D
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-gromacs/" class="md-nav__link">
+        analysis-gromacs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-sims/mdsim-gromacs/" class="md-nav__link">
+        Molecular Dynamics Simulations with GROMACS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-sims/mdsim-mdanalysis/" class="md-nav__link">
+        MD Simulations Using MDAnalysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          MD Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MD Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          MD Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../md-analysis/analysis-vmd/" class="md-nav__link">
+        MD Analysis with VMD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligplot/" class="md-nav__link">
+        LigPlot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligpargen/" class="md-nav__link">
+        LigParGen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gromacs-tutorials/" class="md-nav__link">
+        GROMACS Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/docking-tutorials/" class="md-nav__link">
+        Docking Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/using-vmd/" class="md-nav__link">
+        Using VMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/conda-colab/" class="md-nav__link">
+        Conda on Colab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/color-by-rmsd/" class="md-nav__link">
+        Coloring by RMSD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/example-articles/" class="md-nav__link">
+        Example Journal Articles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../course/">Course</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Course" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/course-organization/" class="md-nav__link">
+        Course Organization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab00-preparation/" class="md-nav__link">
+        Lab 00
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/lab01-jupyter-colab/" class="md-nav__link">
+        Lab 01
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-images-of-plots" class="md-nav__link">
+    Saving Images of Plots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-plotly-in-colab" class="md-nav__link">
+    Using Plotly in Colab
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Plotly in Colab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#styling-plots" class="md-nav__link">
+    Styling Plots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-plots" class="md-nav__link">
+    Making Plots
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">  
+              
+                
+
+  <h1>Using Plotly</h1>
+
+<h2></h2>
+<p>Much of the analysis of MD simulations involves creating plots and graphs to summarize the data. The Python environment of Google Colab provides access to many of most popular plotting programs including R, Matplotlib, Seaborn, Plotly, and others. After reading about the pros and cons of the various packages I settled on <a href="https://plotly.com/">Plotly</a>. Plotly is powerful, offers 3D graphing and interactive plots, and has flexible styling for making publication-quality figures. And of course, it runs well in Jupyter notebooks.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>At the end of this exercise, students will be able to do the following:</p>
+<ol>
+<li>Install Plotly in Colab.</li>
+<li>View a data table.</li>
+<li>Create an interactive plot of the data in a table.</li>
+<li>Add style to figures to enhance the visual hierarchy to easily distinguish the important elements from the peripheral.</li>
+<li>Combine multiple plots into a single figure.</li>
+<li>Locate additional resources on using Plotly in Colab.</li>
+</ol>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.kaggle.com/kanncaa1/plotly-tutorial-for-beginners">Plotly Tutorial for Beginners</a>: Nice examples for most of the types of plots one would use.  </li>
+<li><a href="https://learn.co/lessons/plotly-basics">Plotly Basics</a>: This tutorial explains the code very well.  </li>
+<li><a href="https://plotly.com/python/getting-started/">Getting Started with Plotly in Python</a>: Go to the source for getting Plotly up and running.  </li>
+<li><a href="https://www.coursera.org/projects/data-visualization-plotly-express">Data Visualization with Plotly Express</a>  </li>
+<li><a href="https://colab.research.google.com/github/binnisb/blog/blob/master/_notebooks/2020-04-02-Plotly-in-lab.ipynb">Getting Plotly working in Jupyter Lab and fastpages</a>  </li>
+<li><a href="https://plotly.com/python/plotly-express/">Plotly Express in Python</a></li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<ul>
+<li>Switch to appropriate Google Account.</li>
+<li>Start a new notebook.</li>
+<li>Make sure you are still in the appropriate account.</li>
+<li>Mount Google Drive.</li>
+</ul>
+<p>First, see if Plotly is installed:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly</span>
+<span class="n">plotly</span><span class="o">.</span><span class="n">__version__</span>
+<span class="mf">5.5.0</span> <span class="c1"># Plotly 5.5 is already installed in Colab</span>
+</code></pre></div>
+<h3 id="saving-images-of-plots">Saving Images of Plots</h3>
+<p>I want to include a few images of the plots produced by Plotly in this website even though it is not needed in Colab. See <a href="https://plotly.com/python/static-image-export/">Static Image Export in Python</a> for instructions.</p>
+<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">kaleido</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>pip</code> installation did not work. I kept getting an error message that <code>kaleido</code> was not installed even though it installed successfully. This was solved by installing <code>kaleido</code> using <code>conda</code>.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">condacolab</span>
+<span class="kn">import</span> <span class="nn">condacolab</span>
+<span class="n">condacolab</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+</code></pre></div>
+<p>Once the kernel reboots, you are good to go.</p>
+<p>Okay. Now we can export a plot as an image by including <code>fig.write_image("fig1.png")</code> in our code.</p>
+<h3 id="using-plotly-in-colab">Using Plotly in Colab</h3>
+<p>Let's plot something. See <a href="https://colab.research.google.com/github/pytrain/iViz/blob/master/IV_Plotly.ipynb#scrollTo=2ljXzS-h9Gym">IV_Plotly</a> for most of the code, below.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;scrollZoom&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
+    <span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;fig1.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img alt="test plot using plotly" src="../../assets/images/using-plotly/fig1.png" width="400" />
+  </p>
+<figcaption>Here is a Plotly plot</figcaption>
+</figure>
+<p>Let's try another plot.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_width&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">marginal_y</span><span class="o">=</span><span class="s2">&quot;violin&quot;</span><span class="p">,</span>
+           <span class="n">marginal_x</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="n">trendline</span><span class="o">=</span><span class="s2">&quot;ols&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;fig2.png&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="test plot using plotly" src="../../assets/images/using-plotly/fig2.png" width="600" /></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<p>And my favorite--a box plot!</p>
+<p><img alt="test plot using plotly" src="../../assets/images/using-plotly/fig3.png" width="600" /></p>
+<p>Let's look at the underlying data as a table.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tips</span><span class="p">()</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+    <span class="n">header</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">),</span>
+    <span class="n">cells</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+               <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;lavender&#39;</span><span class="p">,</span>
+               <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;fig3.png&quot;</span><span class="p">)</span> <span class="c1"># make a figure</span>
+</code></pre></div>
+<p><img alt="test plot using plotly" src="../../assets/images/using-plotly/fig4.png" width="600" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The table is scrollable in Colab</p>
+</div>
+<p>I uploaded some <code>.dat</code> files from RMSD measurements from analyzing an MD trajectory in VMD.</p>
+<p>Here is some useful Plotly information:</p>
+<ul>
+<li><code>df.index</code> returns the list of the index, in our case, it’s just integers 0, 1, 2, …, 97.</li>
+<li><code>df.columns</code> gives the list of the column (header) names.</li>
+</ul>
+<p>This code:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span>
+           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</code></pre></div>
+<p>Returns: <code>Index(['frame', 'mol0'], dtype='object')</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">mol0</span> <span class="c1"># gets the data in the specified column</span>
+<span class="c1"># this wont work if the column has a space in it</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="m">0</span>       NaN
+<span class="m">1</span>     <span class="m">0</span>.405
+<span class="m">2</span>     <span class="m">0</span>.507
+<span class="m">3</span>     <span class="m">0</span>.606
+<span class="m">4</span>     <span class="m">0</span>.657
+      ...  
+<span class="m">93</span>    <span class="m">1</span>.914
+<span class="m">94</span>    <span class="m">1</span>.898
+<span class="m">95</span>    <span class="m">1</span>.951
+<span class="m">96</span>    <span class="m">1</span>.953
+<span class="m">97</span>    <span class="m">1</span>.932
+Name: mol0, Length: <span class="m">98</span>, dtype: float64
+</code></pre></div>
+<p>See <a href="https://pythoninoffice.com/get-values-rows-and-columns-in-pandas-dataframe/">Get values in rows and columns in Pandas</a></p>
+<p><div class="highlight"><pre><span></span><code>dataframe[&#39;column name&#39;]
+</code></pre></div>
+dataframe = df
+use double square brackets for multiple columns</p>
+<div class="highlight"><pre><span></span><code>dataframe[ [&#39;column name 1&#39;, &#39;column name 2&#39;, &#39;column name 3&#39;, ... ] ]
+</code></pre></div>
+<p><code>df.loc[row, column]</code>. column is optional, and if left blank, we can get the entire row.</p>
+<p>Let's look at one of the files I uploaded to Colab, <code>msd-core.dat</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span>
+           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="c1"># The above code creates a dataframe (df) from reading a csv file.</span>
+<span class="c1"># our file was not really a csv file, so we need to specify</span>
+<span class="c1"># the delimiter (spaces, using Regex), and the engine </span>
+<span class="c1"># that does the reading</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+    <span class="n">header</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">),</span>
+    <span class="n">cells</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">mol0</span><span class="p">],</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;lavender&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">))</span>
+<span class="p">])</span>
+
+<span class="c1"># The above code creates a figure from the dataframe,</span>
+<span class="c1"># and styles the header and the cells of the table.</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span> <span class="c1"># limits the table to a width of 500px</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># shows the figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;rmsd-core.dat.png&quot;</span><span class="p">)</span> <span class="c1"># make a png of the figure</span>
+</code></pre></div>
+<p><img alt="a data table" src="../../assets/images/using-plotly/rmsd-core.dat.png" width="400" /></p>
+<h4 id="styling-plots">Styling Plots</h4>
+<p>To make it easier to assign colors to plots, I included a cell that contains code to produce swatches of named colors that will work in Colab. This code comes from the <a href="https://matplotlib.org/stable/gallery/color/named_colors.html">List of named colors</a> page from the <a href="https://matplotlib.org/stable/index.html">Matplotlib documentation website</a>. On Colab, I put this code into a form so I can keep it out of the way.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Color Figure</label><label for="__tabbed_1_2">Code</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="a data table" src="../../assets/images/using-plotly/named-colors.png" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">#@title Named Colors Code</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">====================</span>
+<span class="sd">List of named colors</span>
+<span class="sd">====================</span>
+
+<span class="sd">This plots a list of the named colors supported in matplotlib. Note that</span>
+<span class="sd">:ref:`xkcd colors &lt;xkcd-colors&gt;` are supported as well, but are not listed here</span>
+<span class="sd">for brevity.</span>
+
+<span class="sd">For more information on colors in matplotlib see</span>
+
+<span class="sd">* the :doc:`/tutorials/colors/colors` tutorial;</span>
+<span class="sd">* the `matplotlib.colors` API;</span>
+<span class="sd">* the :doc:`/gallery/color/color_demo`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+
+
+<span class="k">def</span> <span class="nf">plot_colortable</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">sort_colors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">emptycols</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+    <span class="n">cell_width</span> <span class="o">=</span> <span class="mi">212</span>
+    <span class="n">cell_height</span> <span class="o">=</span> <span class="mi">22</span>
+    <span class="n">swatch_width</span> <span class="o">=</span> <span class="mi">48</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="n">topmargin</span> <span class="o">=</span> <span class="mi">40</span>
+
+    <span class="c1"># Sort colors by hue, saturation, value and name.</span>
+    <span class="k">if</span> <span class="n">sort_colors</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">by_hsv</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="nb">tuple</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">rgb_to_hsv</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">to_rgb</span><span class="p">(</span><span class="n">color</span><span class="p">))),</span>
+                        <span class="n">name</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">hsv</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">by_hsv</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+    <span class="n">ncols</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">emptycols</span>
+    <span class="n">nrows</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="n">ncols</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">ncols</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">cell_width</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">margin</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">cell_height</span> <span class="o">*</span> <span class="n">nrows</span> <span class="o">+</span> <span class="n">margin</span> <span class="o">+</span> <span class="n">topmargin</span>
+    <span class="n">dpi</span> <span class="o">=</span> <span class="mi">72</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">dpi</span><span class="p">,</span> <span class="n">height</span> <span class="o">/</span> <span class="n">dpi</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">margin</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="n">margin</span><span class="o">/</span><span class="n">height</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">width</span><span class="o">-</span><span class="n">margin</span><span class="p">)</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="p">(</span><span class="n">height</span><span class="o">-</span><span class="n">topmargin</span><span class="p">)</span><span class="o">/</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cell_width</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">cell_height</span> <span class="o">*</span> <span class="p">(</span><span class="n">nrows</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="o">-</span><span class="n">cell_height</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nrows</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">nrows</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">row</span> <span class="o">*</span> <span class="n">cell_height</span>
+
+        <span class="n">swatch_start_x</span> <span class="o">=</span> <span class="n">cell_width</span> <span class="o">*</span> <span class="n">col</span>
+        <span class="n">text_pos_x</span> <span class="o">=</span> <span class="n">cell_width</span> <span class="o">*</span> <span class="n">col</span> <span class="o">+</span> <span class="n">swatch_width</span> <span class="o">+</span> <span class="mi">7</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">text_pos_x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+                <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span>
+            <span class="n">Rectangle</span><span class="p">(</span><span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">swatch_start_x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">9</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">swatch_width</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;0.7&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="n">plot_colortable</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">BASE_COLORS</span><span class="p">,</span> <span class="s2">&quot;Base Colors&quot;</span><span class="p">,</span>
+                <span class="n">sort_colors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">emptycols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_colortable</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">TABLEAU_COLORS</span><span class="p">,</span> <span class="s2">&quot;Tableau Palette&quot;</span><span class="p">,</span>
+                <span class="n">sort_colors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">emptycols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># sphinx_gallery_thumbnail_number = 3</span>
+<span class="n">plot_colortable</span><span class="p">(</span><span class="n">mcolors</span><span class="o">.</span><span class="n">CSS4_COLORS</span><span class="p">,</span> <span class="s2">&quot;CSS Colors&quot;</span><span class="p">)</span>
+
+<span class="c1"># Optionally plot the XKCD colors (Caution: will produce large figure)</span>
+<span class="c1"># xkcd_fig = plot_colortable(mcolors.XKCD_COLORS, &quot;XKCD Colors&quot;)</span>
+<span class="c1"># xkcd_fig.savefig(&quot;XKCD_Colors.png&quot;)</span>
+
+<span class="c1"># to save a copy of this figure</span>
+<span class="c1"># plt.savefig(&#39;named-colors.png&#39;)</span>
+
+<span class="c1"># plt.savefig must be before plt.show</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1">#############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># .. admonition:: References</span>
+<span class="c1">#</span>
+<span class="c1">#    The use of the following functions, methods, classes and modules is shown</span>
+<span class="c1">#    in this example:</span>
+<span class="c1">#</span>
+<span class="c1">#    - `matplotlib.colors`</span>
+<span class="c1">#    - `matplotlib.colors.rgb_to_hsv`</span>
+<span class="c1">#    - `matplotlib.colors.to_rgba`</span>
+<span class="c1">#    - `matplotlib.figure.Figure.get_size_inches`</span>
+<span class="c1">#    - `matplotlib.figure.Figure.subplots_adjust`</span>
+<span class="c1">#    - `matplotlib.axes.Axes.text`</span>
+<span class="c1">#    - `matplotlib.patches.Rectangle`</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="making-plots">Making Plots</h3>
+<p>Okay, let's plot some data. I uploaded <code>.dat</code> files from the RMSD analysis in VMD for three different domains of the Adk protein. We can look at the RMSD of each domain separately.</p>
+<p>First I'll try to reproduce the plot made by VMD.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RMSD of CORE&#39;</span><span class="p">,</span>
+<span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;simulation frame&quot;</span><span class="p">,</span> <span class="n">mol0</span><span class="o">=</span><span class="s2">&quot;RMSD vs t=0&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="plot of RMSD of core domain" src="../../assets/images/using-plotly/rmsd-core.png" width="500" /></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<p>Now let's try the LID domain. I already uploaded the <code>rmsd-lid.dat</code> file. We'll start by looking at the data table.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span>
+           <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</code></pre></div>
+<p>The output is: <code>Index(['frame', 'mol0'], dtype='object')</code>, and we see that the columns are labeled <code>frame</code> and <code>mol0</code> like before.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Table</label><label for="__tabbed_2_2">Code</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="table of RMSD of lid domain" src="../../assets/images/using-plotly/rmsd-lid-table.png" width="400" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+    <span class="n">header</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;paleturquoise&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">),</span>
+    <span class="n">cells</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">mol0</span><span class="p">],</span>
+                <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;lavender&#39;</span><span class="p">,</span>
+                <span class="n">align</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">))</span>
+<span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<p>Let's make a plot.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Plot</label><label for="__tabbed_3_2">Code</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="plot of RMSD of lid domain" src="../../assets/images/using-plotly/rmsd-lid.png" width="500" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;RMSD of LID Domain&#39;</span><span class="p">,</span>
+<span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;simulation frame&quot;</span><span class="p">,</span> <span class="n">mol0</span><span class="o">=</span><span class="s2">&quot;RMSD vs t=0&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+</div>
+<p>It would be useful to see all traces on the same figure. Let's give it a whirl.</p>
+<p>In this method, each <code>.dat</code> file is read into a separate dataframe, and individual figures are produced. Each figure can be styled independently. Then all the figures are combined into one composite figure.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Figure legend top</label><label for="__tabbed_4_2">Code legend top</label><label for="__tabbed_4_3">Figure legend bottom</label><label for="__tabbed_4_4">Code legend bottom</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="plot of RMSD of all domains" src="../../assets/images/using-plotly/rmsd-all-l-top.png" width="500" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Create dataframes for each file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-nmp.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="c1"># create figure 1</span>
+<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span> <span class="c1"># x and y are the column names</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;violet&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-core&quot;</span><span class="p">)</span>
+
+<span class="c1"># create figure 2</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;deepskyblue&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-lid&quot;</span><span class="p">)</span>
+
+<span class="c1"># create figure 3</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig3</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;goldenrod&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-nmp&quot;</span><span class="p">)</span>
+
+<span class="c1"># construct the composite figure</span>
+<span class="n">fig4</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">fig1</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">fig2</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">fig3</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># add the legend and the axes titles</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Simulation Frame&quot;</span><span class="p">)</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;RMSD vs t=0&quot;</span><span class="p">)</span>
+
+<span class="c1"># change the graph width and add a graph title</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;RMSD for adk&quot;</span><span class="p">)</span>
+
+<span class="c1"># to anchor the legend in the top left of the graph, this works:</span>
+<span class="c1"># fig4.update_layout(width=600, title_text=&quot;RMSD for adk&quot;,</span>
+<span class="c1">#                     legend=dict(</span>
+<span class="c1">#     yanchor=&quot;top&quot;,</span>
+<span class="c1">#     y=0.99,</span>
+<span class="c1">#     xanchor=&quot;left&quot;,</span>
+<span class="c1">#     x=0.01</span>
+<span class="c1"># ))</span>
+
+<span class="c1"># show the graph</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><img alt="plot of RMSD of all domains" src="../../assets/images/using-plotly/rmsd-all-l-bottom.png" width="500" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Create dataframes for each file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-nmp.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="c1"># create figure 1</span>
+<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span> <span class="c1"># x and y are the column names</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig1</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;violet&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-core&quot;</span><span class="p">)</span>
+
+<span class="c1"># create figure 2</span>
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig2</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;deepskyblue&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-lid&quot;</span><span class="p">)</span>
+
+<span class="c1"># create figure 3</span>
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">)</span>
+<span class="c1"># change the color of the trace and add a name for the legend</span>
+<span class="n">fig3</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;goldenrod&#39;</span><span class="p">),</span> 
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;RMSD-nmp&quot;</span><span class="p">)</span>
+
+<span class="c1"># construct the composite figure</span>
+<span class="n">fig4</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">fig1</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">fig2</span><span class="o">.</span><span class="n">data</span> <span class="o">+</span> <span class="n">fig3</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># add the legend and the axes titles</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">legend</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="c1"># the x and y positions will put legend in bottom middle of the figure</span>
+        <span class="n">x</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Legend&quot;</span><span class="p">,</span>
+        <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;whitesmoke&quot;</span>
+        <span class="p">)</span>
+        <span class="p">)</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Simulation Frame&quot;</span><span class="p">)</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;RMSD vs t=0&quot;</span><span class="p">)</span>
+<span class="c1"># change the graph width and add a graph title</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;RMSD for adk&quot;</span><span class="p">)</span>
+
+<span class="c1"># to anchor the legend in the top left of the graph, this works:</span>
+<span class="c1"># fig4.update_layout(width=600, title_text=&quot;RMSD for adk&quot;,</span>
+<span class="c1">#                     legend=dict(</span>
+<span class="c1">#     yanchor=&quot;top&quot;,</span>
+<span class="c1">#     y=0.99,</span>
+<span class="c1">#     xanchor=&quot;left&quot;,</span>
+<span class="c1">#     x=0.01</span>
+<span class="c1"># ))</span>
+
+<span class="c1"># show the graph</span>
+<span class="n">fig4</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>I also found a way to put all the figures on the same plot without needing to make individual dataframes. However I could only make this work by converting the files to <code>.csv</code> format. Luckily, we can do that.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Figure</label><label for="__tabbed_5_2">Code</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="plot of RMSD of all domains" src="../../assets/images/using-plotly/rmsd-all-v2.png" width="600" /></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># import stuff</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># read the .dat file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-nmp.dat&#39;</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+
+<span class="c1"># write a .csv file</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-nmp.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="c1"># do it again for the other .dat files</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.dat&#39;</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-core.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.dat&#39;</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s\s+&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/rmsd-lid.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="c1"># This code iterates over a directory and makes the plot while combining</span>
+<span class="c1"># the csv files. </span>
+
+<span class="c1"># location where the .csv files exist</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;/content/&quot;</span><span class="p">)</span>
+
+<span class="c1"># Read and concatenate all the .csv files into one dataframe, </span>
+<span class="c1"># creating an additional column that is the filename.</span>
+<span class="c1"># Plot the combined dataframe scatter (line), </span>
+<span class="c1"># using one plot / color per csv file.</span>
+
+<span class="n">fig5</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;rmsd-*.csv&quot;</span><span class="p">)],</span>
+    <span class="p">),</span>
+    <span class="n">color_discrete_map</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;rmsd-core.csv&#39;</span><span class="p">:</span><span class="s1">&#39;goldenrod&#39;</span><span class="p">,</span> <span class="c1"># a color for this filename</span>
+            <span class="s1">&#39;rmsd-nmp.csv&#39;</span><span class="p">:</span><span class="s1">&#39;deepskyblue&#39;</span><span class="p">,</span> <span class="c1"># a color for this filename</span>
+            <span class="s1">&#39;rmsd-lid.csv&#39;</span><span class="p">:</span><span class="s1">&#39;violet&#39;</span> <span class="c1"># a color for this filename</span>
+            <span class="p">},</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="c1"># the column to use as the X-axis</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;mol0&quot;</span><span class="p">,</span> <span class="c1"># the column to use as the Y-axis</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="c1"># color each line based on filename</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;frame&quot;</span><span class="p">:</span> <span class="s2">&quot;Simulation Frame&quot;</span><span class="p">,</span> <span class="c1"># a title for the X-axis</span>
+            <span class="s2">&quot;mol0&quot;</span><span class="p">:</span> <span class="s2">&quot;RMSD vs t=0&quot;</span><span class="p">,</span> <span class="c1"># a title for the Y-axis</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span> <span class="c1"># figure legend title (leave empty for no title)</span>
+            <span class="p">})</span>
+
+<span class="c1"># to anchor the legend in the top left of the graph, uncomment</span>
+<span class="c1"># the code below.</span>
+
+<span class="c1"># fig5.update_layout(width=600, title_text=&quot;RMSD for adk&quot;,</span>
+<span class="c1">#                     legend=dict(</span>
+<span class="c1">#     yanchor=&quot;top&quot;,</span>
+<span class="c1">#     y=0.99,</span>
+<span class="c1">#     xanchor=&quot;left&quot;,</span>
+<span class="c1">#     x=0.01</span>
+<span class="c1"># ))</span>
+
+<span class="c1"># Rename the traces</span>
+<span class="n">newnames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;rmsd-core.csv&#39;</span><span class="p">:</span><span class="s1">&#39;RMSD CORE domain&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;rmsd-nmp.csv&#39;</span><span class="p">:</span><span class="s1">&#39;RMSD NMP domain&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;rmsd-lid.csv&#39;</span><span class="p">:</span><span class="s1">&#39;RMSD LID domain&#39;</span><span class="p">}</span>
+
+<span class="n">fig5</span><span class="o">.</span><span class="n">for_each_trace</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">newnames</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">]))</span>
+
+<span class="c1"># set the figure width and give the figure a title</span>
+<span class="n">fig5</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;RMSD for adk&quot;</span><span class="p">)</span>
+<span class="c1"># To create an image of the plot, uncomment the code below.</span>
+<span class="c1"># fig5.write_image(&quot;rmsd-all-v2.png&quot;)</span>
+
+<span class="c1"># show the figure</span>
+<span class="n">fig5</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Here is a Python tool to draw a <a href="https://docs.eyesopen.com/toolkits/cookbook/python/plotting/rama.html">Ramachandran Plot</a>. I especially like the tabs to see plots of specific amino acids.</p>
+<p>Here is a tip on <a href="https://blog.matteoferla.com/2019/06/exporting-jupyter-notebooks-with-plotly.html?m=0">Exporting Jupyter notebooks with Plotly graphs</a></p>
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../building-this-site/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Building This Site" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Building This Site
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../md-analysis/analysis-amber/" class="md-footer__link md-footer__link--next" aria-label="Next: Analysis of MD Simulations Using AMBER" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Analysis of MD Simulations Using AMBER
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 David G Oppenheimer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../overrides/assets/javascripts/bundle.90528257.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1384 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes for running and analyzing molecular dynamics simulations">
+      
+      
+        <meta name="author" content="David G Oppenheimer">
+      
+      
+        <link rel="canonical" href="https://dgoppenheimer.github.io/mk-test/user-guide/md-analysis/analysis-vmd/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+    
+    
+      
+        <title>Analysis in VMD - Molecular Dynamics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50e68009.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../../overrides/assets/stylesheets/main.d9227bb8.min.css">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#analyzing-a-trajectory-in-vmd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Molecular Dynamics" class="md-header__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Molecular Dynamics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Analysis in VMD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../introduction/" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../reference/ligplot/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../course/" class="md-tabs__link">
+        Course
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Molecular Dynamics" class="md-nav__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../../assets/logo.svg" alt="logo">
+
+    </a>
+    Molecular Dynamics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../building-this-site/" class="md-nav__link">
+        Building This Site
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../using-plotly/" class="md-nav__link">
+        Using Plotly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analysis-amber/" class="md-nav__link">
+        Analysis of MD Simulations Using AMBER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analysis-bio3d/" class="md-nav__link">
+        Protein Structure Networks with Bio3D
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../analysis-gromacs/" class="md-nav__link">
+        analysis-gromacs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../md-sims/mdsim-gromacs/" class="md-nav__link">
+        Molecular Dynamics Simulations with GROMACS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../md-sims/mdsim-mdanalysis/" class="md-nav__link">
+        MD Simulations Using MDAnalysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          MD Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MD Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          MD Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          MD Analysis with VMD
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        MD Analysis with VMD
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rmsd-fitting-and-analysis-of-a-trajectory" class="md-nav__link">
+    RMSD fitting and analysis of a trajectory
+  </a>
+  
+    <nav class="md-nav" aria-label="RMSD fitting and analysis of a trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superposition-and-rmsd" class="md-nav__link">
+    Superposition and RMSD
+  </a>
+  
+    <nav class="md-nav" aria-label="Superposition and RMSD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-domain" class="md-nav__link">
+    CORE Domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lid-domain" class="md-nav__link">
+    LID Domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmp-domain" class="md-nav__link">
+    NMP Domain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-lipid-representation" class="md-nav__link">
+    Add a Lipid Representation
+  </a>
+  
+    <nav class="md-nav" aria-label="Add a Lipid Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-awk" class="md-nav__link">
+    Using awk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chem-181-introduction-to-molecular-simulation" class="md-nav__link">
+    CHEM 181 Introduction to Molecular Simulation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/ligplot/" class="md-nav__link">
+        LigPlot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/ligpargen/" class="md-nav__link">
+        LigParGen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/gromacs-tutorials/" class="md-nav__link">
+        GROMACS Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/docking-tutorials/" class="md-nav__link">
+        Docking Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/using-vmd/" class="md-nav__link">
+        Using VMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/conda-colab/" class="md-nav__link">
+        Conda on Colab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/color-by-rmsd/" class="md-nav__link">
+        Coloring by RMSD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/example-articles/" class="md-nav__link">
+        Example Journal Articles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../course/">Course</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Course" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course/course-organization/" class="md-nav__link">
+        Course Organization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course/lab00-preparation/" class="md-nav__link">
+        Lab 00
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../course/lab01-jupyter-colab/" class="md-nav__link">
+        Lab 01
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting Started
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rmsd-fitting-and-analysis-of-a-trajectory" class="md-nav__link">
+    RMSD fitting and analysis of a trajectory
+  </a>
+  
+    <nav class="md-nav" aria-label="RMSD fitting and analysis of a trajectory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superposition-and-rmsd" class="md-nav__link">
+    Superposition and RMSD
+  </a>
+  
+    <nav class="md-nav" aria-label="Superposition and RMSD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-domain" class="md-nav__link">
+    CORE Domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lid-domain" class="md-nav__link">
+    LID Domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmp-domain" class="md-nav__link">
+    NMP Domain
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-a-lipid-representation" class="md-nav__link">
+    Add a Lipid Representation
+  </a>
+  
+    <nav class="md-nav" aria-label="Add a Lipid Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-awk" class="md-nav__link">
+    Using awk
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chem-181-introduction-to-molecular-simulation" class="md-nav__link">
+    CHEM 181 Introduction to Molecular Simulation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">  
+              
+                
+
+<h2></h2>
+<h1 id="analyzing-a-trajectory-in-vmd">Analyzing a Trajectory in VMD</h1>
+<p>For this exercise, I'll follow the <a href="https://becksteinlab.physics.asu.edu/pages/courses/2017/PHY542/practicals/md/dynamics/index.html">PHY542: MD analysis with VMD tutorial</a>.</p>
+<p>I downloaded the needed files from the <a href="https://becksteinlab.physics.asu.edu/pages/courses/2016/PHY542/practicals/md/files/">Input files for PHY542 MD Practical</a>.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>First, run (type into the <code>tcl</code> console) <code>logfile console</code> so that any GUI commands get logged in the console so I can see the corresponding <code>cli</code> command.</p>
+<ul>
+<li>
+<p>Load the topology file. </p>
+<ul>
+<li>Go to the <em>Molecule File Browser</em> &#8594; <em>Browse</em>.</li>
+<li>Choose <code>adk.psf</code>.</li>
+<li>Click <em>Load</em>.</li>
+</ul>
+</li>
+<li>
+<p>Load the trajectory file. </p>
+<ul>
+<li>Go to the <em>Molecule File Browser</em> &#8594; <em>Load files for</em> </li>
+<li>Choose <code>0:adk.psf</code>. </li>
+<li>Go to <em>Browse</em> and choose <code>adk_dims.dcd</code>.</li>
+<li>Under <em>Frames</em>, click <em>Load all at once</em>.</li>
+<li>Click <em>Load</em>.</li>
+</ul>
+</li>
+<li>
+<p>Play the trajectory for fun.</p>
+</li>
+<li>Make some new representations.<ul>
+<li>In the <code>tcl</code> console type:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span> <span class="c1"># adds a representation of molecule 0</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">protein</span> <span class="ow">and</span> <span class="n">resid</span> <span class="mi">30</span> <span class="n">to</span> <span class="mi">59</span> <span class="c1"># changes this representation to just the NMP domain of AdK</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">newcartoon</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">ColorID</span> <span class="mi">22</span> <span class="c1"># cyan3</span>
+
+
+<span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span> <span class="c1"># adds another representation of molecule 0</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">2</span> <span class="mi">0</span> <span class="n">protein</span> <span class="ow">and</span> <span class="n">resid</span> <span class="mi">122</span> <span class="n">to</span> <span class="mi">159</span> <span class="c1"># LID domain of AdK</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">2</span> <span class="mi">0</span> <span class="n">newcartoon</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">2</span> <span class="mi">0</span> <span class="n">ColorID</span> <span class="mi">17</span> <span class="c1"># yellow3</span>
+
+<span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span> <span class="c1"># adds another representation of molecule 0</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">protein</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">resid</span> <span class="mi">30</span> <span class="n">to</span> <span class="mi">59</span> <span class="mi">122</span> <span class="n">to</span> <span class="mi">159</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">protein</span> <span class="ow">and</span> <span class="n">resid</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">29</span> <span class="mi">60</span> <span class="n">to</span> <span class="mi">121</span> <span class="mi">160</span> <span class="n">to</span> <span class="mi">214</span><span class="p">)</span> <span class="c1"># CORE domain of AdK</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">newcartoon</span>
+<span class="n">mol</span> <span class="n">modcolor</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">ColorID</span> <span class="mi">6</span>
+
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">off</span> <span class="c1"># turn off molecule 0 (top)</span>
+</code></pre></div>
+<h2 id="rmsd-fitting-and-analysis-of-a-trajectory">RMSD fitting and analysis of a trajectory</h2>
+<h3 id="superposition-and-rmsd">Superposition and RMSD</h3>
+<h4 id="core-domain">CORE Domain</h4>
+<ul>
+<li>Superimpose all trajectory frames on the <em>CORE</em> domain.<ul>
+<li>In the <code>tcl</code> console type: <code>menu rmsdtt on</code>.</li>
+<li>In the <em>RMSD Trajectory Tool</em>:<ul>
+<li>add <code>protein and not (resid 30 to 59 122 to 159)</code> (the <em>CORE</em> domain) to the box in the upper left of the widget.</li>
+<li>Choose <code>Backbone</code> for <em>Selection Modifiers</em>.</li>
+<li>Choose <code>Top</code> for <em>Reference Mol</em>.</li>
+</ul>
+</li>
+<li>Run <em>RMSD</em>. Note that the average RMSD is about 2.651&#177;0.996.</li>
+<li>Click the box for <em>On/Off Frame ref:</em> and use frame <code>0</code> for the reference.</li>
+<li>Run <em>Align</em>.</li>
+<li>Run <em>RMSD</em> again. Note that teh RMSD is now 1.521&#177;0.399.</li>
+<li>In the <em>RMSD Trajectory Tool</em>, go to <em>File</em> &#8594; <em>Plot data</em>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="lid-domain">LID Domain</h4>
+<ul>
+<li>Superimpose all trajectory frames on the <em>LID</em> domain.<ul>
+<li>In the <code>tcl</code> console type: <code>menu rmsdtt on</code>.</li>
+<li>In the <em>RMSD Trajectory Tool</em>:<ul>
+<li>add <code>protein and resid 122 to 159</code> (the <em>LID</em> domain) to the box in the upper left of the widget.</li>
+<li>Choose <code>Backbone</code> for <em>Selection Modifiers</em>.</li>
+<li>Choose <code>Top</code> for <em>Reference Mol</em>.</li>
+</ul>
+</li>
+<li>Run <em>RMSD</em>. Note that the average RMSD is about 9.921&#177;4.436.</li>
+<li>Click the box for <em>On/Off Frame ref:</em> and use frame <code>0</code> for the reference.</li>
+<li>Run <em>Align</em>.</li>
+<li>Run <em>RMSD</em> again. Note that teh RMSD is now 1.013&#177;0.202.</li>
+<li>In the <em>RMSD Trajectory Tool</em>, go to <em>File</em> &#8594; <em>Plot data</em>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="nmp-domain">NMP Domain</h4>
+<ul>
+<li>Superimpose all trajectory frames on the <em>NMP</em> domain.<ul>
+<li>In the <code>tcl</code> console type: <code>menu rmsdtt on</code>.</li>
+<li>In the <em>RMSD Trajectory Tool</em>:<ul>
+<li>add <code>protein and resid 30 to 59</code> (the <em>NMP</em> domain) to the box in the upper left of the widget.</li>
+<li>Choose <code>Backbone</code> for <em>Selection Modifiers</em>.</li>
+<li>Choose <code>Top</code> for <em>Reference Mol</em>.</li>
+</ul>
+</li>
+<li>Run <em>RMSD</em>. Note that the average RMSD is about 13.085&#177;7.081.</li>
+<li>Click the box for <em>On/Off Frame ref:</em> and use frame <code>0</code> for the reference.</li>
+<li>Run <em>Align</em>.</li>
+<li>Run <em>RMSD</em> again. Note that teh RMSD is now 1.342&#177;0.321.</li>
+<li>In the <em>RMSD Trajectory Tool</em>, go to <em>File</em> &#8594; <em>Plot data</em>.</li>
+</ul>
+</li>
+</ul>
+<p>using Extensions ‣ Analysis ‣ RMSD Trajectory Tool</p>
+<ol>
+<li><code>trj_nos.dcd</code>, which is the short form of <code>covid-spike-6vxx_1_1_1_traj_dcd</code>. Before loading, set the stride to 10 (every 10th frame will be loaded), otherwise my laptop runs out of memory and VMD crashes. With <code>stride=2</code>, the spike protein trajectory loaded with 642 frames.</li>
+<li><code>prot_gly_memb.psf</code></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Load the <code>*.dcd</code> file first. You may be able to load all the frames depending on the size of the trajectory file and your computer's memory. If you load the <code>*.psf</code> or a <code>*.pdb</code> file first, and then load the trajectory, the viewer will try to display each frame as it is loaded, which will likely lead to memory problems and a crash. However, the <a href="https://becksteinlab.physics.asu.edu/pages/courses/2017/PHY542/practicals/md/dynamics/visualization.html">PHY542: MD analysis with VMD tutorial</a> states:</p>
+<blockquote>
+<p>You always load a topology file first and then you load the trajectory data for the system.</p>
+</blockquote>
+<p>I need to check the VMD documentation to determine the correct order for loading the files into VMD.</p>
+</div>
+<p>Turn of the axes from the viewer: type <code>axes location off</code> into the <code>tcl</code> console.</p>
+<p>Let's start by making some new representations so that we can turn off the things we don't want to see in our final image.</p>
+<h2 id="add-a-lipid-representation">Add a Lipid Representation</h2>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span> <span class="c1"># adds a representation of molecule 0</span>
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">off</span> <span class="c1"># turn off molecule 0 (top)</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">protein</span> <span class="c1"># changed selection for rep 1 to just protein</span>
+
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">NewCartoon</span>
+<span class="n">menu</span> <span class="n">rmsdtt</span> <span class="n">on</span> <span class="c1"># turn on the RMSD trajectory tool</span>
+</code></pre></div>
+<p>Click <code>plot</code> and <code>noh</code> in the <code>RMSD trajectory tool</code> menu. Use <code>0</code> as the reference frame, and click <code>align</code>. Next click <code>RMSD</code>.</p>
+<p>I looked in the topology file <code>top_all36_lipid.rtf</code> to find all the lipid names.</p>
+<div class="highlight"><pre><span></span><code><span class="n">resname</span> <span class="n">DLPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">LPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SAPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SDPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DAPC</span>
+</code></pre></div>
+<p>Using the <code>atomselect</code> command.</p>
+<p>A quick test:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">set</span> <span class="n">sel</span> <span class="p">[</span><span class="n">atomselect</span> <span class="n">top</span> <span class="s2">&quot;resname DLPC&quot;</span><span class="p">]</span>
+<span class="n">atomselect2</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">atomselect</span> <span class="n">macro</span> <span class="n">lipid</span> <span class="p">{</span>
+ <span class="n">resname</span> <span class="n">DLPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">LPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SAPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SDPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DAPC</span>
+<span class="p">}</span>
+
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">off</span> <span class="c1"># turn off molecule 0 (top)</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">1</span> <span class="mi">0</span> <span class="p">{</span><span class="n">lipid</span><span class="p">}</span> <span class="c1"># changed selection for rep 1 to just lipid</span>
+<span class="n">mol</span> <span class="n">modstyle</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">Lines</span> <span class="c1"># was the default rep_number mol_number</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">on</span> <span class="c1"># turns on molecule 0, rep 0 (everything)</span>
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">off</span> <span class="c1"># turns off lipid</span>
+<span class="n">mol</span> <span class="n">addrep</span> <span class="mi">0</span>
+<span class="n">mol</span> <span class="n">modselect</span> <span class="mi">2</span> <span class="mi">0</span> <span class="n">protein</span>
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">off</span> <span class="c1"># turns off &quot;all&quot; rep</span>
+<span class="c1"># just protein is remaining</span>
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">2</span> <span class="n">off</span> <span class="c1"># turns off protein</span>
+<span class="n">mol</span> <span class="n">showrep</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">on</span>
+</code></pre></div>
+<p>set sel [atomselect top "protein"]</p>
+<ul>
+<li><code>mol showrep molecule_number rep_number [on | off]</code></li>
+</ul>
+<hr />
+<p>Here is the topology file: <code>top_all36_carb.rtf</code></p>
+<p>Each carbohydrate is preceded by <code>RESI</code> followed by an abbreviation of its name.</p>
+<p>I want to print out all of the <code>RESI</code> lines with the abbreviated names.</p>
+<p>we wish to print all the lines whose fourth column says HIS, we just use:</p>
+<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$4==&quot;HIS&quot;&#39;</span> 6ane.txt
+</code></pre></div>
+<h3 id="using-awk">Using <code>awk</code></h3>
+<blockquote>
+<p>By default Awk prints every line of data from the specified file.  </p>
+</blockquote>
+<p>See <a href="https://www.geeksforgeeks.org/awk-command-unixlinux-examples/">AWK command in Unix/Linux with examples</a></p>
+<p>Print the lines that match a pattern:</p>
+<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;/manager/ {print}&#39;</span> employee.txt 
+</code></pre></div>
+<p>I want to match a pattern of <code>RESI</code> followed by a space and 4 capital letters.</p>
+<p>Regular expressions to the rescue!</p>
+<table>
+<thead>
+<tr>
+<th align="center">character</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">\s</td>
+<td>Selects any whitespace character</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td>Selects any word</td>
+</tr>
+<tr>
+<td align="center">[a-d]</td>
+<td>Selects any character a through d (a, b, c, or d)</td>
+</tr>
+<tr>
+<td align="center">[:upper:]</td>
+<td>Uppercase alphabetic characters</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>For each record i.e line, the awk command splits the record delimited by whitespace character by default and stores it in the $n variables. If the line has 4 words, it will be stored in $1, $2, $3 and $4 respectively. Also, $0 represents the whole line.  </p>
+</blockquote>
+<p>This should print the first and second columns of all records (lines) that start with <code>RESI</code>.</p>
+<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;/RESI/ {print $1,$2}&#39;</span> top_all36_carb.rtf
+<span class="c1"># output</span>
+RESI AGLC
+RESI BGLC
+RESI AALT
+RESI BALT
+RESI AALL
+RESI BALL
+RESI AGAL
+RESI BGAL
+RESI AGUL
+RESI BGUL
+RESI AIDO
+RESI BIDO
+RESI AMAN
+RESI BMAN
+RESI ATAL
+RESI BTAL
+RESI AXYL
+RESI BXYL
+RESI AFUC
+RESI BFUC
+RESI ARHM
+RESI BRHM
+RESI AGLCA
+RESI BGLCA
+RESI BGLCA0
+RESI AIDOA
+RESI BIDOA
+RESI AGLCNA
+RESI BGLCNA
+RESI BGLCN0
+RESI AGALNA
+RESI BGALNA
+RESI ANE5AC
+RESI BNE5AC
+RESI ABEQ
+RESI ARHMOA
+RESI TIP3
+RESI MGLYOL
+RESI MERYOL
+RESI DTHROL
+RESI LTHROL
+RESI MRIBOL
+RESI DARAOL
+RESI LARAOL
+RESI MXYLOL
+RESI MALLOL
+RESI DALTOL
+RESI LALTOL
+RESI DGLUOL
+RESI LGLUOL
+RESI DMANOL
+RESI LMANOL
+RESI DGULOL
+RESI LGULOL
+RESI DIDIOL
+RESI LIDIOL
+RESI MGALOL
+RESI ALLOSE
+RESI PSICOS
+RESI INI1
+RESI INI2
+RESI INI3
+RESI INI4
+RESI INI5
+RESI ADEO
+RESI BDEO
+RESI ARIB
+RESI BRIB
+RESI AARB
+RESI BARB
+RESI ALYF
+RESI BLYF
+RESI AXYF
+RESI BXYF
+RESI AFRU
+RESI BFRU
+</code></pre></div>
+<p>Now I can do a search/replace in VS Code to generate a macro to use for <code>atomselect</code>.</p>
+<p>Search for <code>RESI</code> and replace with <code>resname</code>.<br />
+Search for <code>\n</code> and replace with <code>&lt;spcae&gt;</code> or <code>&lt;space&gt;</code>.<br />
+Clean up the beginning and end of selection, and delete the TIP3 (water).</p>
+<p>```bash
+resname AGLC or resname BGLC or resname AALT or resname BALT or resname AALL or resname BALL or resname AGAL or resname BGAL or resname AGUL or resname BGUL or resname AIDO or resname BIDO or resname AMAN or resname BMAN or resname ATAL or resname BTAL or resname AXYL or resname BXYL or resname AFUC or resname BFUC or resname ARHM or resname BRHM or resname AGLCA or resname BGLCA or resname BGLCA0 or resname AIDOA or resname BIDOA or resname AGLCNA or resname BGLCNA or resname BGLCN0 or resname AGALNA or resname BGALNA or resname ANE5AC or resname BNE5AC or resname ABEQ or resname ARHMOA or resname MGLYOL or resname MERYOL or resname DTHROL or resname LTHROL or resname MRIBOL or resname DARAOL or resname LARAOL or resname MXYLOL or resname MALLOL or resname DALTOL or resname LALTOL or resname DGLUOL or resname LGLUOL or resname DMANOL or resname LMANOL or resname DGULOL or resname LGULOL or resname DIDIOL or resname LIDIOL or resname MGALOL or resname ALLOSE or resname PSICOS or resname INI1 or resname INI2 or resname INI3 or resname INI4 or resname INI5 or resname ADEO or resname BDEO or resname ARIB or resname BRIB or resname AARB or resname BARB or resname ALYF or resname BLYF or resname AXYF or resname BXYF or resname AFRU or resname BFRU
+<div class="highlight"><pre><span></span><code>```py
+atomselect macro glycan {
+resname AGLC or resname BGLC or resname AALT or resname BALT or resname AALL or resname BALL or resname AGAL or resname BGAL or resname AGUL or resname BGUL or resname AIDO or resname BIDO or resname AMAN or resname BMAN or resname ATAL or resname BTAL or resname AXYL or resname BXYL or resname AFUC or resname BFUC or resname ARHM or resname BRHM or resname AGLCA or resname BGLCA or resname BGLCA0 or resname AIDOA or resname BIDOA or resname AGLCNA or resname BGLCNA or resname BGLCN0 or resname AGALNA or resname BGALNA or resname ANE5AC or resname BNE5AC or resname ABEQ or resname ARHMOA or resname MGLYOL or resname MERYOL or resname DTHROL or resname LTHROL or resname MRIBOL or resname DARAOL or resname LARAOL or resname MXYLOL or resname MALLOL or resname DALTOL or resname LALTOL or resname DGLUOL or resname LGLUOL or resname DMANOL or resname LMANOL or resname DGULOL or resname LGULOL or resname DIDIOL or resname LIDIOL or resname MGALOL or resname ALLOSE or resname PSICOS or resname INI1 or resname INI2 or resname INI3 or resname INI4 or resname INI5 or resname ADEO or resname BDEO or resname ARIB or resname BRIB or resname AARB or resname BARB or resname ALYF or resname BLYF or resname AXYF or resname BXYF or resname AFRU or resname BFRU
+}
+</code></pre></div></p>
+<p>The above macro did not work, but neither did the text below.</p>
+<div class="highlight"><pre><span></span><code><span class="n">atomselect</span> <span class="n">macro</span> <span class="n">lipid2</span> <span class="p">{</span>
+ <span class="n">resname</span> <span class="n">DLPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">LPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DLPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DMPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DPPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DSPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DOPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPE</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPS</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPA</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">POPG</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SAPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SDPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">SOPC</span> <span class="ow">or</span> <span class="n">resname</span> <span class="n">DAPC</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>There is already a built-in macro for lipid/lipids and for glycans. (So I don't need to make my own macros) for this.</p>
+<p>mol modselect 3 0 glycan 
+mol modcolor 3 0 ResType</p>
+<h2 id="resources">Resources</h2>
+<h2 id="chem-181-introduction-to-molecular-simulation">CHEM 181 Introduction to Molecular Simulation</h2>
+<p><a href="http://copresearch.pacific.edu/mmccallum/181/styled-5/styled-16/index.html">Introduction to Molecular Dynamics Trajectories</a>: This is done in VMD. Look carefully at the section <em>Trajectory coloring by structure</em>. This has useful tips.</p>
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../md-sims/mdsim-mdanalysis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MD Simulations Using MDAnalysis" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              MD Simulations Using MDAnalysis
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../reference/ligplot/" class="md-footer__link md-footer__link--next" aria-label="Next: LigPlot" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              LigPlot
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 David G Oppenheimer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../../overrides/assets/javascripts/bundle.90528257.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1077 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes for running and analyzing molecular dynamics simulations">
+      
+      
+        <meta name="author" content="David G Oppenheimer">
+      
+      
+        <link rel="canonical" href="https://dgoppenheimer.github.io/mk-test/course/lab01-jupyter-colab/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.11">
+    
+    
+      
+        <title>Lab 01 - Molecular Dynamics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50e68009.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link rel="stylesheet" href="../../overrides/assets/stylesheets/main.d9227bb8.min.css">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-01-introduction-to-jupyter-notebooks-and-colab" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Molecular Dynamics" class="md-header__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Molecular Dynamics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 01
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../user-guide/introduction/" class="md-tabs__link">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/ligplot/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Course
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Molecular Dynamics" class="md-nav__button md-logo" aria-label="Molecular Dynamics" data-md-component="logo">
+      
+  <img src="../../assets/logo.svg" alt="logo">
+
+    </a>
+    Molecular Dynamics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="User Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/getting-started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/building-this-site/" class="md-nav__link">
+        Building This Site
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/using-plotly/" class="md-nav__link">
+        Using Plotly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-amber/" class="md-nav__link">
+        Analysis of MD Simulations Using AMBER
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-bio3d/" class="md-nav__link">
+        Protein Structure Networks with Bio3D
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-gromacs/" class="md-nav__link">
+        analysis-gromacs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-sims/mdsim-gromacs/" class="md-nav__link">
+        Molecular Dynamics Simulations with GROMACS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-sims/mdsim-mdanalysis/" class="md-nav__link">
+        MD Simulations Using MDAnalysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          MD Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="MD Analysis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          MD Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/md-analysis/analysis-vmd/" class="md-nav__link">
+        MD Analysis with VMD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligplot/" class="md-nav__link">
+        LigPlot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/ligpargen/" class="md-nav__link">
+        LigParGen
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gromacs-tutorials/" class="md-nav__link">
+        GROMACS Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/docking-tutorials/" class="md-nav__link">
+        Docking Tutorials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/using-vmd/" class="md-nav__link">
+        Using VMD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/conda-colab/" class="md-nav__link">
+        Conda on Colab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/color-by-rmsd/" class="md-nav__link">
+        Coloring by RMSD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/example-articles/" class="md-nav__link">
+        Example Journal Articles
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">Course</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Course" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course-organization/" class="md-nav__link">
+        Course Organization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab00-preparation/" class="md-nav__link">
+        Lab 00
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 01
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lab 01
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#welcome-to-google-colaboratory" class="md-nav__link">
+    Welcome to Google Colaboratory!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    Jupyter Notebooks
+  </a>
+  
+    <nav class="md-nav" aria-label="Jupyter Notebooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cells" class="md-nav__link">
+    Cells
+  </a>
+  
+    <nav class="md-nav" aria-label="Cells">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-and-moving-cells" class="md-nav__link">
+    Adding and moving cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-cells" class="md-nav__link">
+    Text Cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-cells" class="md-nav__link">
+    Code Cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-create-using-extension-to-control-size" class="md-nav__link">
+    g-create using extension to control size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-anyway-left" class="md-nav__link">
+    run-anyway Left
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#welcome-to-google-colaboratory" class="md-nav__link">
+    Welcome to Google Colaboratory!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    Jupyter Notebooks
+  </a>
+  
+    <nav class="md-nav" aria-label="Jupyter Notebooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cells" class="md-nav__link">
+    Cells
+  </a>
+  
+    <nav class="md-nav" aria-label="Cells">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-and-moving-cells" class="md-nav__link">
+    Adding and moving cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-cells" class="md-nav__link">
+    Text Cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-cells" class="md-nav__link">
+    Code Cells
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-create-using-extension-to-control-size" class="md-nav__link">
+    g-create using extension to control size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-anyway-left" class="md-nav__link">
+    run-anyway Left
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">  
+              
+                
+
+<h2></h2>
+<h1 id="lab-01-introduction-to-jupyter-notebooks-and-colab">Lab 01: Introduction to Jupyter notebooks and Colab</h1>
+<p><a href="https://drive.google.com/uc?export=view&amp;id=1-JE5lbCK4Amelom8clmAyXUOAoyHhfig"><img  width="50" src="https://drive.google.com/uc?export=view&id=1-JE5lbCK4Amelom8clmAyXUOAoyHhfiq" alt="Colaboratory logo" align="left" hspace="10" vspace="30" /> </a></p>
+<h2 id="welcome-to-google-colaboratory">Welcome to Google Colaboratory!</h2>
+<p><em>In this exercise you will learn about Jupyter notebooks and Google Colaboratory (Colab).</em></p>
+<p>What is Google Colaboratory?</p>
+<p><a href="https://colab.research.google.com/">Google Colaboratory</a> (or “Colab” for short) is a cloud-based platform that allows users to run software on high-performance computer clusters for free. Colab uses the <a href="https://jupyter.org/">Jupyter notebook</a> format, which allows users to create and store code, computing output, visualizations, and text within a web browser.</p>
+<p>Watch the video, below, to get a brief introduction to what Colab offers.</p>
+<p><iframe src="https://www.youtube.com/embed/inN8seMm7UI" style="position: relative; width: 100%; height: 22.172vw" frameborder="0" allowfullscreen></iframe></p>
+<h2 id="jupyter-notebooks">Jupyter Notebooks</h2>
+<p><a href="https://jupyter.org/">Jupyter</a> notebooks are documents that allow you to create, view, and run code. These notebooks are typically web-based and can contain code, text, equations, images, videos, and more. The document you are reading now is a Jupyter notebook. Importantly, these notebooks are interactive--you can change the code, run it and view the new output. Also, you can store the output of the code in the notebook and share it with others. This ability to document what code you executed, and the resulting output is important for reproducibility.</p>
+<p>Jupyter notebooks can be run locally on your own computer, and can use many different programming languages. However, we will be used a web-based notebook that uses the <a href="https://www.python.org/">python</a> language.</p>
+<h3 id="cells">Cells</h3>
+<p>Jupyter notebooks are made up of two kinds of cells: <strong>code cells</strong> and <strong>text cells</strong>.</p>
+<h4 id="adding-and-moving-cells">Adding and moving cells</h4>
+<p>New code or text cells can be added by using the <code>+ CODE</code> and <code>+ TEXT</code> buttons that show up when you hover at the bottom of a cell. You can also find these buttons in the toolbar above the notebook.</p>
+<p><a href="https://github.com/dgoppenheimer/notebook-images/blob/main/add-cells.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/add-cells.png?raw=true" alt="add cells" width="560"/></a></p>
+<p>You can move a cell by selecting it and clicking the up arrow button(which moves selected cell up) or the down arrow button (which moves the selected cell down) in the toolbar in the upper right of a selected cell.</p>
+<p><a href="https://github.com/dgoppenheimer/notebook-images/blob/main/move-cells.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/move-cells.png?raw=true" alt="move cells" width="560"/></a></p>
+<h4 id="text-cells">Text Cells</h4>
+<p>Text cells are used to annotate your code, describe your workflow, provide instructions, or add additional information to your notebook. Text cells are formatted using <a href="https://daringfireball.net/projects/markdown/">Markdown</a>, a text to <code>html</code> conversion tool widely used to format text on the web. With Markdown, you can add text formatting such as <strong>bold</strong> and <em>italics</em>, add images, links, and more!</p>
+<p>For more information, please visit the <a href="https://www.markdownguide.org/">Markdown Guide</a>, especially the <a href="https://www.markdownguide.org/getting-started/">Getting Started</a> section. We will be using Markdown throughout this course to format our text cells.</p>
+<h4 id="code-cells">Code Cells</h4>
+<p>Below is a code cell. Once the toolbar button indicates <code>CONNECTED</code>, click in the cell to select it and execute the contents in the following ways:</p>
+<ul>
+<li>Click the <code>Play</code> icon in the upper left corner of the code cell; it will appear when you hover over the <code>[ ]</code>.</li>
+<li>Type <code>Cmd/Ctrl+Enter</code> to run the cell in place</li>
+<li>Type <code>Shift+Enter</code> to run the cell and move to the next cell. A new cell will be added if there are no remaining cells.</li>
+<li>Type <code>Alt+Enter</code> to run the cell and insert a new code cell immediately below it.</li>
+</ul>
+<p>Additional options for running some or all cells in your notebook can be found in the <code>Runtime</code> menu.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is a comment in a code cell</span>
+<span class="c1"># It is preceded by a hash symbol (#)</span>
+<span class="c1"># Comments are useful for annotating parts of your code</span>
+<span class="c1"># Comments are ignored when the code cell is run</span>
+<span class="n">codons</span> <span class="o">=</span> <span class="mi">154</span>
+<span class="n">protein_MW</span> <span class="o">=</span> <span class="n">codons</span> <span class="o">*</span> <span class="mi">110</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">protein_MW</span><span class="p">)</span>
+</code></pre></div>
+<p>Click the button, Open in Colab
+Run the cell, Mount Google Drive
+Wait until the notebook connects with Google's computers</p>
+<p>g-create
+<a href="https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true" alt="create account" width="560"/></a></p>
+<h4 id="g-create-using-extension-to-control-size">g-create using extension to control size</h4>
+<p><img _="&quot;" alt="test" src="https://github.com/dgoppenheimer/notebook-images/blob/main/g-create.png?raw=true" style="height:150px;width:150px" /></p>
+<p>mount-drive
+<a href="https://github.com/dgoppenheimer/notebook-images/blob/main/mount-drive.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/mount-drive.png?raw=true" alt="mount Google Drive" width="560"/></a></p>
+<p>run-anyway
+<a href="https://github.com/dgoppenheimer/notebook-images/blob/main/run-anywa.png?raw=true"><img src="https://github.com/dgoppenheimer/notebook-images/blob/main/run-anyway.png?raw=true" alt="add cells" width="560"/></a></p>
+<h4 id="run-anyway-left">run-anyway Left</h4>
+<p><img align="left" alt="Image title" src="https://dummyimage.com/200x200/eee/aaa" /></p>
+<p>Herp derpsum merpus ler derperker herpderpsmer. Pee sherper dee serp. Merpus re se ter derpsum me sherper herpler. Cerp herp derpy herpderpsmer tee. Herpem de mer, zerpus derpler sherpus der herpderpsmer ner. Merpus nerpy sherlamer derp! Me der berps, derp sherlamer. Ner derpsum se derpler nerpy. Derperker se derpus perper sherper. Re nerpy de derps ter. Herpderpsmer ler derpy ner pee derpsum herpem, cerp berp? Serp er zerpus merp berps terpus derperker cerp ler derp? Sherlamer derpler re, sherp derpus. Mer ner serp derpus cerp derpler ler perper. Herderder derp derpsum mer!</p>
+<p><img align="left" alt="run anyway" src="https://github.com/dgoppenheimer/notebook-images/blob/main/run-anyway.png?raw=true" /></p>
+<figure>
+<p><img alt="Run anyway" src="https://github.com/dgoppenheimer/notebook-images/blob/main/run-anyway.png?raw=true" width="560" /></p>
+</figure>
+<p>(You may need to mount your drive, again)</p>
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../lab00-preparation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 00" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lab 00
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 David G Oppenheimer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.092fa1f6.min.js"}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.5a9542cf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../overrides/assets/javascripts/bundle.90528257.min.js"></script>
+
+  </body>
+</html>
